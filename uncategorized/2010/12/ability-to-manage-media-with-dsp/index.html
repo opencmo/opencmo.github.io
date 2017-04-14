@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Ability To Manage Digital Media With DSP | OpenDSP</title>
+
+<meta name="generator" content="WordPress 3.0.3" /> <!-- leave this for stats -->
+
+<link rel="stylesheet" href="http://www.opendsp.com/wp-content/themes/wp_premium/style.css" type="text/css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="OpenDSP RSS Feed" href="http://www.opendsp.com/feed" />
+<link rel="pingback" href="http://www.opendsp.com/xmlrpc.php" />
+<script type="text/javascript" src="http://www.opendsp.com/wp-content/themes/wp_premium/taber.js" language="javascript" ></script>
+<script type="text/javascript" language="javascript" src="http://www.opendsp.com/wp-content/themes/wp_premium/hover.js"></script>
+                        <style type="text/css" media="screen" >
+                                .socialwrap li.icon_text a img, .socialwrap li.iconOnly a img, .followwrap li.icon_text a img, .followwrap li.iconOnly a img{border-width:0 !important;background-color:none;}#follow.right {width:32px;position:fixed; right:0; top:100px;background-color:#878787;padding:10px 0;font-family:impact,charcoal,arial, helvetica,sans-serif;-moz-border-radius-topleft: 5px;-webkit-border-top-left-radius:5px;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;border:2px solid #fff;border-right-width:0}#follow.right ul {padding:0; margin:0; list-style-type:none !important;font-size:24px;color:black;}
+#follow.right ul li {padding-bottom:10px;list-style-type:none !important;padding-left:4px;padding-right:4px}
+#follow img{border:none;}#follow.right ul li.follow {margin:0 4px;}
+#follow.right ul li.follow img {border-width:0;display:block;overflow:hidden; background:transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/images/impact/follow-right.png) no-repeat -0px 0px;height:79px;width:20px;}
+#follow.right ul li a {display:block;}
+#follow.right ul li.follow span, #follow ul li a span {display:none}.share {margin:0 3px 3px 0;}
+.phat span {display:inline;}
+ul.row li {float:left;list-style-type:none;}
+li.iconOnly a span.head {display:none}
+#follow.left ul.size16 li.follow{margin:0px auto !important}
+li.icon_text a {padding-left:0;margin-right:3px}
+li.text_only a {background-image:none !important;padding-left:0;}
+li.text_only a img {display:none;}
+li.icon_text a span{background-image:none !important;padding-left:0 !important; }
+li.iconOnly a span.head {display:none}
+ul.socialwrap li {margin:0 3px 3px 0 !important;}
+ul.socialwrap li a {text-decoration:none;}ul.row li {float:left;line-height:auto !important;}
+ul.row li a img {padding:0}.size16 li a,.size24 li a,.size32 li a, .size48 li a, .size60 li a {display:block}ul.socialwrap {list-style-type:none !important;margin:0; padding:0;text-indent:0 !important;}
+ul.socialwrap li {list-style-type:none !important;background-image:none;padding:0;list-style-image:none !important;}
+ul.followwrap {list-style-type:none !important;margin:0; padding:0}
+ul.followwrap li {margin-right:3px;margin-bottom:3px;list-style-type:none !important;}
+#follow.right ul.followwrap li, #follow.left ul.followwrap li {margin-right:0px;margin-bottom:0px;}
+.shareinpost {clear:both;padding-top:0px}.shareinpost ul.socialwrap {list-style-type:none !important;margin:0 !important; padding:0 !important}
+.shareinpost ul.socialwrap li {padding-left:0 !important;background-image:none !important;margin-left:0 !important;list-style-type:none !important;text-indent:0 !important}
+.socialwrap li.icon_text a img, .socialwrap li.iconOnly a img{border-width:0}ul.followrap li {list-style-type:none;list-style-image:none !important;}
+div.clean {clear:left;}
+div.display_none {display:none;}
+                        </style>
+                                                <style type="text/css" media="print" >
+                                body {background: white;font-size: 12pt;color:black;}
+ * {background-image:none;}
+ #wrapper, #content {width: auto;margin: 0 5%;padding: 0;border: 0;float: none !important;color: black;background: transparent none;}
+ a { text-decoration : underline; color : #0000ff; }
+#menu, #navigation, #navi, .menu {display:none}
+                        </style>
+                        <link rel="image_src" href="http://www.gravatar.com/avatar/064e0ddeb84e741497247b695940e5d3?default=&amp;size=110.jpg" /> 
+<link rel="alternate" type="application/rss+xml" title="OpenDSP &raquo; Ability To Manage Digital Media With DSP Comments Feed" href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp/feed" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.opendsp.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.opendsp.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='OpenDSP' href='http://www.opendsp.com' />
+<link rel='start' title='What is a demand-side platform?' href='http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2' />
+<link rel='prev' title='DSP Features' href='http://www.opendsp.com/uncategorized/2010/12/dsp-features' />
+<link rel='next' title='Digital Media With DSP?
+DSP ar&#8230;' href='http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar' />
+<meta name="generator" content="WordPress 3.0.3" />
+<link rel='shortlink' href='http://www.opendsp.com/?p=110' />
+
+<!-- All in One SEO Pack 1.6.13 by Michael Torbert of Semper Fi Web Design[284,331] -->
+<meta name="keywords" content="ability,media,tomanage,withdsp,uncategorized" />
+<link rel="canonical" href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp" />
+<!-- /all in one seo pack -->
+
+			<link rel="stylesheet" type="text/css" href="http://www.opendsp.com/index.php?ak_action=aktt_css&v=2.4" />
+			<script type="text/javascript" src="http://www.opendsp.com/index.php?ak_action=aktt_js&v=2.4"></script>
+		</head>
+
+<body>
+
+<div id="header">
+ 	<div id="header-in">
+    
+    <p class="title"><a href="http://www.opendsp.com" title="OpenDSP">OpenDSP</a></p>
+    <p class="description">An Open Community for Demand Side Platform on Online Advertising Industry</p>
+	  
+
+	<div id="nav">
+	<ul>
+		<li class="page_item page-item-2"><a href="http://www.opendsp.com/home.html" title="Home">Home</a></li>
+<li class="page_item page-item-7"><a href="http://www.opendsp.com/demandsideplatform.html" title="Demand Side Platform">Demand Side Platform</a></li>
+<li class="page_item page-item-9"><a href="http://www.opendsp.com/realtimebidding.html" title="Real Time Bidding">Real Time Bidding</a></li>
+<li class="page_item page-item-61"><a href="http://www.opendsp.com/sell-side-platform.html" title="Sell Side Platform">Sell Side Platform</a></li>
+<li class="page_item page-item-11"><a href="http://www.opendsp.com/blo.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-103"><a href="http://www.opendsp.com/contact-2.html" title="Contact">Contact</a></li>
+	</ul>
+	</div>
+	
+	<div class="subscribe">
+	 	<span class="rss"><a href="http://www.opendsp.com/feed"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/rss.gif" alt="" /></a></span> 
+		 
+		 <div class="subscribeform">
+		  <p>Subscribe via Email </p>
+          
+          
+          
+		<!-- get your feedburner ID from google feedburner and replace the two 'YOUR FEEDBURNER ID HERE' with your ID
+        e.g. if your google feedburner ID is http://feeds2.feedburner.com/RBhavesh then, you should write 'RBhavesh' in place of "YOUR FEEDBURNER ID HERE"
+        REMEMBER: you have to replace it twice in this form. Look carefully.
+        -->
+
+          <form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" 
+          onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=YOUR FEEDBURNER ID HERE', 
+          'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+				<input type="text"  name="email" class="textfield" /></p>
+				<input type="hidden" value="YOUR FEEDBURNER ID HERE" name="uri"/>
+				<input type="hidden" name="loc" value="en_US"/>
+				<input type="image" value="" src="http://www.opendsp.com/wp-content/themes/wp_premium/images/blank.png" class="sbutton" />
+			</form>
+        
+ 		 </div>
+	</div>
+ 
+	</div>
+
+</div>
+<div class="container-top"></div>
+<div id="container">
+ <!--header.php end-->
+<div id="content">
+		
+		
+	<!--post title-->
+	<h1 id="post-110"><a href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp" rel="bookmark" title="Permanent Link: Ability To Manage Digital Media With DSP">Ability To Manage Digital Media With DSP</a></h1>
+	
+     <div class="post-meta-top">
+	<div class="date">Posted at December 21, 2010 </div>
+ 	</div> <!-- post-meta-top #end -->
+			
+ 	
+	<!--content with more link-->
+	<div style="float:right;padding: 0 0 10px 10px" class="interactive_right"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp&amp;text=Ability To Manage Digital Media With DSP&amp;count=vertical&amp;lang=  " style="width:60px; height:65px;"></iframe><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp&amp;layout=box_count&amp;show_faces=false&amp;width=60&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:60px; height:65px;" allowTransparency="true"></iframe></div><p><!-- p { margin-bottom: 0.21cm; } --><span><span style="font-size: small;">Demand Side Platforms are being used by advertisers because of their ability to manage media and automate bids in real time while using only one interface. Perhaps the most appealing aspect of using a DSP is that it is a more simple way to manage real time bidding. Agencies are able to more easily choose how and where their ads are being placed. At the same time, they are able to utilize many inventory sources at once, and this allows for better performance and ROI from campaigns. Most DSP&#8217;s also will have built in campaign management tools which allow the user to either automatically target or individually (manually) target with their ads. This also allows for better time-management.</span></span></p>
+<p>The benefit to DSP&#8217;s and their real time bidding technology lies in the convenience. With the use of a demand side platform, there is no need to log-in to different servers and systems for every provider an advertiser is working with. Most DSP&#8217;s have the ability to connect with any Ad Server. Some have compared the efficiency of demand side platforms to that of an SEM campaign, all while having the transparency and manageability advertisers want and need.</p>
+<p><!-- p { margin-bottom: 0.21cm; } -->Viewing an audience and evaluating inventory on a large scale allows users of DSP&#8217;s to track behavioral tendencies and retarget accordingly. This is because more of the internet exchanges are visible in one place, and the more opportunities you have to target, the more easily you may be able to judge value on a specific campaign or amount of impressions. The result: an increase in ROI.</p>
+<p>Some DSP&#8217;s also allow for you to set a budget and control campaigns on a much larger scale. This eliminates the need for micro-managing media across many engines and ad serving vehicles. On top of this, DSP reporting is generally more easily evaluated because all data and results can be viewed on one program.</p>
+<p>DSP&#8217;s are slowly replacing more traditional ad serving ventures as they enable users to save money, increase ROI and more easily manage their campaigns.</p>
+<div class='shareinpost'><ul class="socialwrap row"><li class="iconOnly share">Share:</li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://delicious.com/post?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp&amp;title=Ability+To+Manage+Digital+Media+With+DSP" title="Bookmark this post : Ability To Manage Digital Media With DSP on Delicious" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-198px 0px" class="image-32" width="32" alt="delicious"/> <span class="head">Bookmark on Delicious</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://digg.com/submit?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp&amp;title=Ability+To+Manage+Digital+Media+With+DSP&amp;bodytext=Demand+Side+Platforms+are+being+used+by+advertisers+because+of+their+ability+to+manage+media+and+automate+bids+in+real+time+while+using+only+one+interface.+Perhaps+the+most+appealing+aspect+of+using+a+DSP+is+that+it+is+a+more+simple+way+to+manage+real+time+bidding.+Agencies+are+able+to+more+easily+choose+how+and+where+" title="Digg this post : Ability To Manage Digital Media With DSP" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-264px 0px" class="image-32" width="32" alt="digg"/> <span class="head">Digg this post</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp&amp;t=Ability+To+Manage+Digital+Media+With+DSP" title="Recommend this post : Ability To Manage Digital Media With DSP on Facebook" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-363px 0px" class="image-32" width="32" alt="facebook"/> <span class="head">Recommend on Facebook</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://twitter.com/home/?status=Ability+To+Manage+Digital+Media+With+DSP+-+http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2010%2F12%2Fability-to-manage-media-with-dsp" title="http://twitter.com/OPENDSP" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-1749px 0px" class="image-32"  width="32"  alt="twitter"/> <span class="head">twitter</span></a></li><li class="iconOnly"><a rel="_self" href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp/feed" title="Follow this post : Ability To Manage Digital Media With DSP comments"><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32"  width="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-1452px 0px" class="image-32"  alt="rss" /> <span class="head">Subscribe to the comments on this post</span></a></li></ul><div class="clean"></div> </div>    
+     <!--Rateing-->
+        <!--Rateing end-->
+	
+	<!--post paging-->
+	
+	<!--Post Meta-->
+	<div class="post-bottom">
+	 <span class="cat"><a href="http://www.opendsp.com/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
+     
+     <ul class="social">
+    <li class="i_digg" ><a href="http://digg.com/submit?phase=2&amp;url=xURIx">  Digg</a></li>            
+        <li class="i_stumb" ><a href="http://www.stumbleupon.com/submit?url=xURIx&amp;title=xTITLEx">Stumbleupon   </a></li>       
+        <li class="i_del" ><a href="http://del.icio.us/post?url=xURIx;title=xTITLEx">Del.icio.us</a></li>          
+        <li class="i_reddit" ><a href="http://reddit.com/submit?url=xURIx;title=xTITLEx">Reddit </a></li>           
+        <li class="i_technorati" ><a href="http://technorati.com/faves?add=http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp" title="Add to Technorati Favorites"> Technorati</a></li> 
+    </ul> <!-- social bookmark section-->
+	
+	</div> <!-- post bottom #end -->
+    
+	
+	<p><strong>If you enjoyed this post, please consider to <a href="#comments">leave a comment</a> or <a href="http://www.opendsp.com/feed">subscribe to the feed</a> and get future articles delivered to your feed reader.
+    </strong></p>	
+		
+	<!--include comments template-->
+	
+<!-- You can start editing here. -->
+
+	
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<div id="respond">
+
+<h3>Leave Comment</h3>
+
+<div class="cancel-comment-reply">
+	<a rel="nofollow" id="cancel-comment-reply-link" href="/uncategorized/2010/12/ability-to-manage-media-with-dsp#respond" style="display:none;">Click here to cancel reply.</a></div>
+
+
+<form action="http://www.opendsp.com/wp-comments-post.php" method="post" id="commentform">
+    <p>
+    <input type="text" name="author" id="author" class="textarea" value="" size="28" tabindex="1" />
+    <label for="author">
+    Name    </label>
+    (required)  </p>
+  <p>
+    <input type="text" name="email" id="email" value="" size="28" tabindex="2" class="textarea" />
+    <label for="email">
+    E-mail    </label>
+    (required)  </p>
+  <p>
+    <input type="text" name="url" id="url" value="" size="28" tabindex="3" class="textarea" />
+    <label for="url">
+    <acronym title="Uniform Resource Identifier">URI</acronym>    </label>
+  </p>
+    <p>
+    <label for="comment"><strong>Your Comment</strong></label>
+    <br />
+    <textarea name="comment" id="comment" cols="60" rows="10" tabindex="4" class="textarea"></textarea>
+  </p>
+  <p>
+    <input name="submit" id="submit" type="submit" tabindex="5" value="submit" class="Cbutton" />
+    <input type="hidden" name="comment_post_ID" value="110" />
+    <input type="hidden" name="redirect_to" value="/uncategorized/2010/12/ability-to-manage-media-with-dsp" />
+  </p>
+  </form>
+</div>
+
+
+	
+	<!--do not delete-->
+		
+	
+<!--single.php end-->
+</div>
+
+<!--include sidebar-->
+<div id="sidebar"  >  
+  <div class="about">
+    <h3>About Site</h3>
+     <img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/hands.jpg" alt="" class="imgleft"  />
+    <p> <strong>OpenDSP</strong> <br />
+   -DSP Online Advertising  </p>
+    <p> This is the site you can get more and more information about DSP and Related.</p>
+    <p>Hello Viewers,Actually OpenDSP looking to provide Demand Side Platform(DSP),the system that connects to multiple ad exchanges and other media suppliers, accessed by a single user interface  </p>  </div>
+  <!-- about me #end -->
+  
+  
+  <div id="xsnazzy">
+    <!--Search Box Start -->
+    <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+    <div class="xboxcontent">
+    
+    
+      <div class="tabber">
+        <div class="tabbertab">
+          <h2>Search</h2>
+          <div class="searchform">
+<form method="get" id="searchform" action="http://www.opendsp.com">
+<input type="text" value="Search on this blog..." name="s" class="s" onfocus="if (this.value == 'Search on this blog...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search on this blog...';}"/>
+<input type="image" class="button" src="http://www.opendsp.com/wp-content/themes/wp_premium/images/none.gif" alt="Submit button" />
+</form>
+</div>
+        </div>
+        
+        <div class="tabbertab">
+          <h2>Archives</h2>
+          <ul class="tablist">
+            	<li><a href='http://www.opendsp.com/2011/01' title='January 2011'>January 2011</a></li>
+	<li><a href='http://www.opendsp.com/2010/12' title='December 2010'>December 2010</a></li>
+          </ul>
+        </div>
+        
+        
+        <div class="tabbertab">
+          <h2>Categories</h2>
+          <ul class="tablist">
+            	<li class="cat-item cat-item-11"><a href="http://www.opendsp.com/opendsp/" title="View all posts filed under OpenDSP">OpenDSP</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.opendsp.com/openrtb/" title="View all posts filed under OpenRTB">OpenRTB</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.opendsp.com/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+          </ul>
+        </div>
+      </div>
+      <!--Tabber end -->
+      
+      
+    </div>
+    <b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b> </div>
+  <!--Search box end -->
+  
+  
+  
+  <div class="advertise">
+    <a href="http://premiumthemes.net" title="PremiumThemes.net"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb1.jpg" alt="Premium Wordpress Themes" /></a>
+<a href="http://cssace.com/wp-premium-theme"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb2.gif" alt="WP Premium Theme" /></a>
+<a href="http://premiumthemes.net" title="PremiumThemes.net"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb3.gif" alt="Best Wordpress Premium Themes" /></a>
+<a href="https://www.e-junkie.com/ecom/gb.php?cl=12108&c=ib&aff=36280"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb4.gif" alt="ultimate theme on the planet"  /></a>  </div><!-- advt #end -->
+  
+  
+  <div id="sidebarwrap" class="clearfix">
+  
+    <!--Recent Post  Start -->
+    <div id="pxsnazzy"> <b class="pxtop"><b class="pxb1"></b><b class="pxb2"></b><b class="pxb3"></b><b class="pxb4"></b></b>
+      <div class="pxboxcontent">
+      
+        <div class="popular">
+          <ul>
+            <li>
+              <h2>Recent Posts</h2>
+              <ul >
+                                <li><a href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0">
+                  OpenRTB Specification v1.0                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market">
+                  DSP Role In Digital Market                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar">
+                  Digital Media With DSP?
+DSP ar&#8230;                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp">
+                  Ability To Manage Digital Media With DSP                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/dsp-features">
+                  DSP Features                  </a></li>
+                              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <b class="pxbottom"><b class="pxb4"></b><b class="pxb3"></b><b class="pxb2"></b><b class="pxb1"></b></b> </div>
+    <!--Recent post box end -->
+    
+    <!--Twitter  Start -->
+    <div id="txsnazzy"> <b class="txtop"><b class="txb1"></b><b class="txb2"></b><b class="txb3"></b><b class="txb4"></b></b>
+      <div class="txboxcontent">
+        <div class="popular">
+          <ul>
+            <li>
+              <h2 class="i_twitter">Twitter</h2>
+                <div class="aktt_tweets">
+	<ul>
+		<li>Digital Media With DSP?
+DSP are being used by advertisers  to manage media and automate bids in real time using only one interface. <a href="http://twitter.com/OPENDSP/statuses/17234982426648576" class="aktt_tweet_time">2010-12-21</a></li>
+		<li>What is a demandsideplatform?
+Demand Side Platform,the system that connects to multiple ad exchanges accessed by a single user interface <a href="http://twitter.com/OPENDSP/statuses/17138746562449408" class="aktt_tweet_time">2010-12-21</a></li>
+		<li class="aktt_more_updates"><a href="http://twitter.com/OPENDSP">More updates...</a></li>
+</ul>	<p id="aktt_tweet_posted_msg">Posting tweet...</p><p class="aktt_credit">Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a></p></div>            </li>
+          </ul>
+        </div>
+      </div>
+      <b class="txbottom"><b class="txb4"></b><b class="txb3"></b><b class="txb2"></b><b class="txb1"></b></b> </div>
+    <!--Twitter post box end -->
+    
+    <div id="l_sidebar" class="clearfix">
+  	<ul> 	  <li>
+      <h2 class="sidebartitle">
+        Recent Comments      </h2>
+            
+<ul>
+	<li><strong><a href="http://www.opendsp.com/opendsp/2010/12/benefits-for-advertisers-with-dsp#comment-6" title="on Benefits For  Advertisers With DSP">admin</a></strong>: HI this is new methodology for maintaining adservers...</li>
+	<li><strong><a href="http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2#comment-4" title="on What is a demand-side platform?">admin</a></strong>: Thanks for good Answer for DSP...</li>
+	<li><strong><a href="http://www.opendsp.com/openrtb/2010/12/openrtb-announcement#comment-3" title="on OpenRTB Announcement">admin</a></strong>: Ya Good Idea...</li>
+</ul>    </li>
+ 		</ul>
+</div>    <div id="r_sidebar" class="clearfix">
+	<ul>
+		<li>
+        <h2>Links</h2>
+	    <ul>
+        <li><a href="http://www.adneedle.com" rel="contact met" title="Run search, social, mobile &amp; display ads all in one place." target="_blank">adneedle</a> - Run search, social, mobile &amp; display ads all in one place.</li>
+<li><a href="http://www.openxservices.com" target="_blank">OpenXServices</a></li>
+        </ul>
+    </li>
+ 		</ul>
+</div>    
+  </div>
+</div>
+<!--sidebar.php end-->
+<!--include footer-->
+</div>
+
+<div class="container-bottom"></div> 
+
+<div id="footer">
+  <div id="footer-wrap">
+    <ul id="nav-footer">
+      <li class="page_item page-item-2"><a href="http://www.opendsp.com/home.html" title="Home">Home</a></li>
+<li class="page_item page-item-7"><a href="http://www.opendsp.com/demandsideplatform.html" title="Demand Side Platform">Demand Side Platform</a></li>
+<li class="page_item page-item-9"><a href="http://www.opendsp.com/realtimebidding.html" title="Real Time Bidding">Real Time Bidding</a></li>
+<li class="page_item page-item-61"><a href="http://www.opendsp.com/sell-side-platform.html" title="Sell Side Platform">Sell Side Platform</a></li>
+<li class="page_item page-item-11"><a href="http://www.opendsp.com/blo.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-103"><a href="http://www.opendsp.com/contact-2.html" title="Contact">Contact</a></li>
+    </ul>
+    
+    <div id="follow" class="right"><ul class="tab down"><li class="follow"><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png"  alt="follow:"/><span>follow:</span></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://www.facebook.com/" title="Become my Facebook friend" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-275px 0px"  alt="Become my Facebook friend"/> <span class="head">Become my Facebook friend</span></a></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://www.opendsp.com/feed/rss" title="RSS" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-1100px 0px"  alt="RSS"/> <span class="head">RSS</span></a></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://twitter.com/OPENDSP" title="twitter" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-1325px 0px"  alt="twitter"/> <span class="head">twitter</span></a></li></ul></div><script type='text/javascript'>var _cmo = {background_color: "#68212B",label: "Contact",text: "Contact",lang: "en",align: "left",valign: "middle",form: "4d109f8c5243be437c001b04"}; (function() {var cms = document.createElement('script'); cms.type = 'text/javascript'; cms.async = true; cms.src = 'http://static.contactme.com/widgets/tab/v1/tab.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cms, s);})();</script>    
+  </div>
+  </div> <!-- footer #end -->
+
+</body>
+</html>
+<!-- analytics977 --> 

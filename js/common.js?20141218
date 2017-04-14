@@ -1,0 +1,736 @@
+function nop(){}
+
+function log (v)
+{
+	if (isset(debug_mode, 'undefined') && debug_mode)
+		console.log(v);
+}
+
+function d()
+{
+	$.each(arguments, function(){
+		console.log(this);
+	});
+}
+
+function get_opt(obj, prop, def)
+{
+	if('undefined' == typeof def)
+		def = '';
+
+	if(('undefined' == typeof obj) || ('undefined' == typeof prop) || (obj === null) || (prop === null) || ('undefined' == typeof obj[prop]))
+		return def;
+
+	return obj[prop];
+}
+
+function isset(obj, prop)
+{
+	return !(('undefined' == typeof obj) || ('undefined' == typeof prop) || ('undefined' == typeof obj[prop]));
+}
+
+function is_typeof(obj, type)
+{
+	return type == $.type(obj);
+}
+
+function funcBind(func, _this)
+{
+	return function(){
+		return func.apply(_this, [].slice.call(arguments, 0));
+	};
+}
+
+function inheritObj(obj)
+{
+	if (isset(Object, 'create'))
+	{
+		return Object.create(obj)
+	}
+	else
+	{
+		function F() {};
+		F.prototype = obj.prototype;
+		return new F();
+	}
+}
+
+function m__common(context, firstRun)
+{
+	if(!firstRun) return;
+
+	/* we must to be absolutely sure that window.console has all common methods */
+	if(!isset(window, 'console')) {
+		window.console = { log:nop, debug:nop, warn:nop, error:nop };
+	} else if(isset(window.console, 'debug')) {
+		window.console.debug = nop;
+	}
+
+	if(!isset(window.console, 'd'))
+		window.console.d = nop;
+}
+
+function check_for_JSON(text)
+{
+	return (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
+		replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+		replace(/(?:^|:|,)(?:\s*\[)+/g, '')));
+}
+
+function confirm(message, callback) {
+	if (!message && typeof callback == 'function')
+	{
+		callback();
+		return;
+	}
+
+	var $dialog = $('.confirm-dialog');
+
+	$dialog.find('.modal-body').html(message);
+
+	$dialog.find('.btn-confirm')
+		.off('click.confirm')
+		.on('click.confirm', function(e) {
+			e.preventDefault();
+			$dialog.modal('hide');
+
+			if (typeof callback == 'function')
+				callback(true);
+		});
+
+	$dialog.find('.btn-cancel')
+		.off('click.confirm')
+		.on('click.confirm', function(e) {
+			e.preventDefault();
+			$dialog.modal('hide');
+
+			if (typeof callback == 'function')
+				callback(false);
+		});
+
+	$dialog.modal();
+}
+
+function message_dialog(message, okCallback) {
+	if (!message)
+	{
+		if (typeof okCallback == 'function')
+			okCallback();
+
+		return;
+	}
+
+	var dialog = $('.message-dialog');
+
+	dialog.find('p').html(message);
+
+	dialog.find('.btn-confirm')
+		.off('click.confirm')
+		.on('click.confirm', function(e) {
+			e.preventDefault();
+			dialog.hide();
+
+			if (is_typeof(okCallback, 'function'))
+				okCallback();
+		});
+
+	dialog.show();
+}
+
+function popup_container($content, onClose) {
+	if (!$content)
+		return;
+
+	var popup = $('.popup-container');
+	popup.find('.html-container').empty().html($content);
+
+	popup.show('fast');
+	popup.find('.content-holder').css('margin-top', $(window).scrollTop());
+
+	var $btn_close = popup.find('.btn-close').off('click.close');
+	if (is_typeof(onClose, 'function'))
+		$btn_close.on('click.close', function(e) {
+			e.preventDefault();
+			onClose();
+		});
+}
+
+function message_drop(message) {
+	var dialog = $('.message-drop');
+
+	dialog.html(message || '');
+
+	dialog.fadeIn('slow', function(){
+		setTimeout(function(){
+			dialog.fadeOut('slow', function(){
+//				dialog.remove();
+			});
+		}, 3000);
+	});
+}
+alert = message_drop;
+
+function show_alert (message, typeOrContainer)
+{
+	var type = 'info';
+	var $container = $('.alert-container');
+
+	if (is_typeof(typeOrContainer, 'string'))
+		type = typeOrContainer;
+	else
+		if (is_typeof(typeOrContainer, 'object'))
+		{
+			$container = typeOrContainer;
+		}
+
+	var $alert = $('<div />').addClass('alert alert-'+type+' alert-dismissable').html(
+		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+		message
+	);
+
+	$container.append($alert);
+}
+
+// Add char "?" or "&" to URI.
+function add_get (href)
+{
+	if (!href)
+		return '?';
+
+	return href+(href.indexOf('?') > -1 ? '&' : '?');
+}
+
+// Add char "?" or "&" to URI.
+function add_external (href)
+{
+	if (!href || href.indexOf('//') === 0 || href.indexOf('http') > -1)
+		return href;
+	else
+		return '//' + href;
+}
+
+function chain_get(obj, key)
+{
+	if(!key) return null;
+
+	var spl = key.split('.');
+	var last = spl.pop();
+	var current = obj;
+
+	$.each(spl, function(index, subkey) {
+		if(!isset(current, subkey))
+		{
+			current = false;
+			return false;
+		}
+		current = current[subkey];
+	});
+	if(!current) return null;
+	return get_opt(current, last, null);
+}
+
+$.render = function (tpl, obj) {
+	var re = /^'([^']*)'$/;
+
+	function param(a)
+	{
+		return re.test(a) ? re.exec(a)[1] : (chain_get(obj, a) || '');
+	}
+
+	for(var l='lastIndexOf', p = tpl[l]('{%'); p > -1; p = tpl[l]('{%'))
+	{
+		var p2 = tpl.indexOf('%}', p);
+		if(p2 == -1) break;
+
+		var spl = tpl.substring(p+2, p2).split('|'), sh = param(spl.shift()), value;
+
+		$.each(spl, function(i, mthd) {
+			if(mthd.indexOf(':') == -1)
+			{
+				value = [sh];
+			}
+			else
+			{
+				value = mthd.split(':');
+				mthd = value[0];
+				value[0] = sh;
+			}
+			for(var j = 1; j < value.length; ++j)
+				value[j] = param(value[j]);
+
+			var method = chain_get(obj, mthd);
+			if($.isFunction(method)) sh = method.apply(obj, value);
+		});
+
+		tpl = tpl.substr(0,p) + sh + tpl.substr(p2+2);
+	}
+	return tpl;
+};
+
+$.render_esc = function(s) {
+	return (s+'').split('%').join('&#37;').split(':').join('&#58;').split('|').join('&#124;');
+};
+
+$.fn.maxScrollTop = function() {
+	if(!this.size()) return 0;
+
+	var sH = this.get(0).scrollHeight || 0;
+	var cH = this.get(0).clientHeight || 0;
+
+	return Math.max(sH, cH) - this.outerHeight();
+};
+
+function patch_touch_event(e){
+	try{
+		isset(e, 'pageX') || (e.pageX = (e.originalEvent||e).changedTouches[0].pageX);
+		isset(e, 'pageY') || (e.pageY = (e.originalEvent||e).changedTouches[0].pageY);
+		isset(e, 'clientX') || (e.pageX = (e.originalEvent||e).changedTouches[0].clientX);
+		isset(e, 'clientY') || (e.pageY = (e.originalEvent||e).changedTouches[0].clientY);
+	} catch(e){}
+}
+
+function trim_str(str, len, dots_count)
+{
+	if (!str)
+		return '';
+
+	if (!dots_count)
+		dots_count = 3;
+
+	var result = $.trim(str);
+
+	if (len && str.length > len + dots_count)
+		result = result.substring(0, len);
+	else
+		return result;
+
+	var words = result.split(' ');
+	if (words.length > 1)
+		result = words.slice(0, -1).join(' ');
+	else
+		result = words[0];
+
+	result += (new Array(dots_count).join('.'));
+
+	return result;
+}
+
+function ltrim (str, word)
+{
+	if ( !str || !word)
+		return str || '';
+
+	if (str.indexOf(word, 0) === 0)
+		return str.substring(word.length, str.length-1)
+
+	return '';
+}
+
+function checkForURL (str)
+{
+	var test = /^((https?:)?\/\/)+.*/.test(str);
+	return test;
+}
+
+function show($block)
+{
+	$($block).show('fast');
+}
+
+function random_str(length)
+{
+	if (!length)
+		length = 6;
+
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	for( var i=0; i < length; i++ )
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
+}
+
+function randomStrTime()
+{
+	return new Date().getTime();
+}
+
+function parseCSV(csv_content) {
+	return $.parse(
+		csv_content
+		,{
+			header: /^(first_name).*/.test(csv_content),
+			encoding: "UTF-8"
+		}
+	);
+}
+
+function readCSV(csvFile, done) {
+	var reader = new FileReader();
+
+	var blob = csvFile.slice(0, csvFile.size);
+
+	reader.onloadend = function(evt){
+		if (evt.target.readyState == FileReader.DONE) // DONE == 2
+		{
+			done(parseCSV(evt.target.result));
+		}
+	};
+
+	reader.readAsText(blob, "UTF-8");
+}
+
+function apply_dataTable ($table, reload)
+{
+	//	d($table);
+	if (!$table)
+		$table = $(this);
+
+	var disable_sorting = $table.hasClass('drag-reorder');
+
+	if ($table.hasClass('noDataTable') || $table.hasClass('dataTabled'))
+		return null;
+
+	var columns = [];
+	var $columns = $table.find('thead tr:first th');
+	//		d($columns);
+
+	var $first_tds = $table.find('tbody tr:first td');
+
+	if (!$columns.size())
+		$columns = $first_tds;
+	else
+	if ($first_tds.size() && $columns.size() != $first_tds.size())
+		return false;
+
+	$columns.each(function(){
+		var option = null;
+
+		if (disable_sorting || $(this).hasClass('btns'))
+			option = {
+				bSearchable: false,
+				bSortable: false
+			};
+
+		columns.push(option);
+	});
+	//		d(columns);
+
+	if (!columns.length)
+		return null;
+
+	var options = {
+		aoColumns: columns,
+		sDom: "<'row'<'col-xs-6'><'col-xs-6'f>r>"+ "t"+ "<'row'<'col-xs-6'i><'col-xs-6'p>>"
+	};
+
+	if (disable_sorting)
+	{
+		$.extend(options, {
+			//iDisplayLength: 100,
+			aaSorting: [],
+			sDom: "<'row'<'col-xs-6'><'col-xs-6'f>r>"+ "t"+ "<'row'<'col-xs-6 view-rows-count'i l><'col-xs-6'p>>"
+		});
+	}
+
+	$table.dataTable(options);
+
+	if ($table.hasClass('drag-reorder'))
+	{
+		var fixHelperModified = function(e, tr) {
+			var $originals = tr.children();
+			var $helper = tr.clone();
+			$helper.css({
+				"background": '#fff',
+				"opacity":.7
+			});
+			$helper.children().each(function(index){
+				$(this).width($originals.eq(index).width() + 15);
+			});
+			return $helper;
+		};
+
+		$table.find('>tbody').sortable({
+			helper: fixHelperModified,
+			stop: function( event, ui ) {
+				"use strict";
+
+				var table = $table.dataTable();
+				var page = table.fnPagingInfo().iPage * 10;
+
+				var $new_rows = $table.find('>tbody > tr');
+
+				var orders = [];
+				$new_rows.each(function(i){
+					var item = {
+						"id": $(this).attr('id'),
+						"order_index": i+page+1
+					};
+
+					orders.push(item);
+				});
+
+				$.post($table.data('reorder-url'), {
+					"data_array": orders
+				}, function(response){
+					//d(response);
+				});
+			}
+		});
+	}
+
+	//		var $filter = $table.parent().find('.dataTables_filter');
+	//		$filter.prepend('<span class="table-title">'+($table.data('title') || '')+'</span>');
+	//
+	//		var filter_label = $filter.find('label');
+	//		var $input = filter_label.find('input').clone(true, true);
+	//
+	//		var table_title = filter_label.text();
+	//		if (table_title)
+	//			$input.attr('placeholder', table_title.substring(0, table_title.length-2));
+	//
+	//		filter_label.html($input);
+
+	return $table.addClass('dataTabled');
+}
+
+function apply_datePicker (context){
+	var $el = $(this);
+//		d($el);
+
+	if ($el.is('[readonly]'))
+		return;
+
+	$el.attr('pattern', '\\d{2} [\\d|\\w]+ \\d{4}');
+
+	$el.hasClass('hasDatepicker');
+	try {$el.datepicker('destroy');}catch (e){}
+	$el.removeClass('hasDatepicker');
+
+	function on_select(){
+		$el.focus();
+
+		var cur_date = $el.datepicker('getDate');
+		var middle_date = context.find($el.data('middle-date')).datepicker('getDate');
+		var min_date = context.find($el.data('min-date')).datepicker('getDate');
+		var max_date = context.find($el.data('max-date')).datepicker('getDate');
+
+		if (($el.hasClass('max-date') || $el.hasClass('middle-date')) && min_date && cur_date < min_date)
+			$el.datepicker("setDate", min_date);
+
+		if (($el.hasClass('min-date') || $el.hasClass('middle-date')) && max_date && cur_date > max_date)
+			$el.datepicker("setDate", max_date);
+
+		if ($el.hasClass('max-date') && middle_date && cur_date < middle_date)
+			$el.datepicker("setDate", middle_date);
+
+		if ($el.hasClass('min-date') && middle_date && cur_date > middle_date)
+			$el.datepicker("setDate", middle_date);
+	}
+
+	var options = {
+		dateFormat: "dd MM yy", //$.datepicker.ATOM,
+		onSelect: on_select,
+		changeMonth: true,
+		changeYear: true,
+		yearRange: "-30:+0"
+	};
+
+	var minDate = $el.data('date-min');
+	if (minDate)
+		options['minDate'] = minDate;
+
+	var maxDate = $el.data('date-max') + '';
+	if (maxDate > '')
+		options['maxDate'] = maxDate.toString();
+
+//		d(options);
+	$el.datepicker(options);
+
+	var maxCur = $el.data('date-cur');
+	if (maxCur && !$el.val())
+		$el.datepicker("setDate", maxCur);
+}
+
+function Redirect(url)
+{
+	return document.location = url;
+}
+
+function pad(num, totalChars) {
+	var pad = '0';
+	num = num + '';
+	while (num.length < totalChars) {
+		num = pad + num;
+	}
+	return num;
+}
+
+// Ratio is between 0 and 1
+function changeColor(color, ratio, darker) {
+	// Trim trailing/leading whitespace
+	color = color.replace(/^\s*|\s*$/, '');
+
+	// Expand three-digit hex
+	color = color.replace(
+		/^#?([a-f0-9])([a-f0-9])([a-f0-9])$/i,
+		'#$1$1$2$2$3$3'
+	);
+
+	// Calculate ratio
+	var difference = Math.round(ratio * 256) * (darker ? -1 : 1),
+	// Determine if input is RGB(A)
+		rgb = color.match(new RegExp('^rgba?\\(\\s*' +
+			'(\\d|[1-9]\\d|1\\d{2}|2[0-4][0-9]|25[0-5])' +
+			'\\s*,\\s*' +
+			'(\\d|[1-9]\\d|1\\d{2}|2[0-4][0-9]|25[0-5])' +
+			'\\s*,\\s*' +
+			'(\\d|[1-9]\\d|1\\d{2}|2[0-4][0-9]|25[0-5])' +
+			'(?:\\s*,\\s*' +
+			'(0|1|0?\\.\\d+))?' +
+			'\\s*\\)$'
+			, 'i')),
+		alpha = !!rgb && rgb[4] != null ? rgb[4] : null,
+
+	// Convert hex to decimal
+		decimal = !!rgb? [rgb[1], rgb[2], rgb[3]] : color.replace(
+			/^#?([a-f0-9][a-f0-9])([a-f0-9][a-f0-9])([a-f0-9][a-f0-9])/i,
+			function() {
+				return parseInt(arguments[1], 16) + ',' +
+					parseInt(arguments[2], 16) + ',' +
+					parseInt(arguments[3], 16);
+			}
+		).split(/,/),
+		returnValue;
+
+	// Return RGB(A)
+	return !!rgb ?
+		'rgb' + (alpha !== null ? 'a' : '') + '(' +
+			Math[darker ? 'max' : 'min'](
+				parseInt(decimal[0], 10) + difference, darker ? 0 : 255
+			) + ', ' +
+			Math[darker ? 'max' : 'min'](
+				parseInt(decimal[1], 10) + difference, darker ? 0 : 255
+			) + ', ' +
+			Math[darker ? 'max' : 'min'](
+				parseInt(decimal[2], 10) + difference, darker ? 0 : 255
+			) +
+			(alpha !== null ? ', ' + alpha : '') +
+			')' :
+		// Return hex
+		[
+			'#',
+			pad(Math[darker ? 'max' : 'min'](
+				parseInt(decimal[0], 10) + difference, darker ? 0 : 255
+			).toString(16), 2),
+			pad(Math[darker ? 'max' : 'min'](
+				parseInt(decimal[1], 10) + difference, darker ? 0 : 255
+			).toString(16), 2),
+			pad(Math[darker ? 'max' : 'min'](
+				parseInt(decimal[2], 10) + difference, darker ? 0 : 255
+			).toString(16), 2)
+		].join('');
+}
+
+function lighterColor (color, ratio)
+{
+	return changeColor(color, ratio, false);
+}
+
+function darkerColor (color, ratio)
+{
+	return changeColor(color, ratio, true);
+}
+
+function apply_wysiwyg_ace ($text){
+	$($text).ace_wysiwyg({
+		toolbar:
+			[
+				'font',
+				null,
+				'fontSize',
+				null,
+				{name:'bold', className:'btn-info'},
+				{name:'italic', className:'btn-info'},
+				{name:'strikethrough', className:'btn-info'},
+				{name:'underline', className:'btn-info'},
+				null,
+				{name:'insertunorderedlist', className:'btn-success'},
+				{name:'insertorderedlist', className:'btn-success'},
+				{name:'outdent', className:'btn-purple'},
+				{name:'indent', className:'btn-purple'},
+				null,
+				{name:'justifyleft', className:'btn-primary'},
+				{name:'justifycenter', className:'btn-primary'},
+				{name:'justifyright', className:'btn-primary'},
+				{name:'justifyfull', className:'btn-inverse'},
+				null,
+				{name:'createLink', className:'btn-pink'},
+				{name:'unlink', className:'btn-pink'},
+				null,
+				{
+					name:'insertImage',
+					className:'btn-success',
+					choose_file: true //show the choose file button?},
+				},
+				null,
+				'foreColor',
+				null,
+				{name:'undo', className:'btn-grey'},
+				{name:'redo', className:'btn-grey'}
+			],
+		'wysiwyg': {
+			fileUploadError: function(error){
+				d(error);
+			}
+		}
+	}).prev().addClass('wysiwyg-style2');
+}
+
+function apply_wysiwyg_ckeditor ($text){
+	$text = $($text);
+
+	CKEDITOR.editorConfig = function( config ) {
+		// Define changes to default configuration here.
+		// For the complete reference:
+		// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+		// The toolbar groups arrangement, optimized for a single toolbar row.
+		config.toolbarGroups = [
+			{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+			{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+			{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+			{ name: 'forms' },
+			{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+			{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+			{ name: 'links' },
+			{ name: 'insert' },
+			{ name: 'styles' },
+			{ name: 'colors' },
+			{ name: 'tools' },
+			{ name: 'others' },
+			{ name: 'about' }
+		];
+
+		// The default plugins included in the basic setup define some buttons that
+		// we don't want too have in a basic editor. We remove them here.
+		config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor';
+
+		// Let's have it basic on dialogs as well.
+		config.removeDialogTabs = 'link:advanced';
+
+		//config.contentsCss = '/css/email.css';
+		//	config.skin = 'moono,/css/ckeditor_skin/';
+
+		config.extraPlugins = 'popup,filebrowser';
+
+		config.filebrowserUploadUrl = '/upload';
+	};
+
+	CKEDITOR.config.simpleImageBase64allowed = true;
+
+	return $text.ckeditor();
+}
+
+var apply_wysiwyg = apply_wysiwyg_ckeditor;

@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>OpenDSP</title>
+	<atom:link href="http://www.opendsp.com/feed" rel="self" type="application/rss+xml" />
+	<link>http://www.opendsp.com</link>
+	<description>An Open Community for Demand Side Platform on Online Advertising Industry</description>
+	<lastBuildDate>Thu, 13 Jan 2011 21:24:32 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.0.3</generator>
+		<item>
+		<title>OpenRTB Specification v1.0</title>
+		<link>http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0</link>
+		<comments>http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0#comments</comments>
+		<pubDate>Thu, 13 Jan 2011 21:24:32 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Demand Side platfrom]]></category>
+		<category><![CDATA[DSP]]></category>
+		<category><![CDATA[Real Time Bidding]]></category>
+		<category><![CDATA[RTB]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=120</guid>
+		<description><![CDATA[Specific Benefits for SSPs and DSPs The first goal of the OpenRTB working group is to standardize a protocol to remove the labor intensive and error prone process in the RTB ecosystem: Managing publisher and advertiser blocklists. The objective of OpenRTB is to minimize these impediments, so that the RTB ecosystem, made up of DSPs [...]]]></description>
+			<content:encoded><![CDATA[<h1>Specific Benefits for SSPs and DSPs</h1>
+<p>The first goal of the OpenRTB working group is to standardize a protocol to remove the labor intensive and error prone process in the RTB ecosystem: Managing publisher and advertiser blocklists. The objective of OpenRTB is to minimize these impediments, so that the RTB ecosystem, made up of DSPs (Demand-Side Platforms) and SSPs (Sell-Side Platforms), can grow more quickly and ensure a higher quality of service to advertisers and publishers.</p>
+<p>Specifically, we aim to address the needs of publishers to block certain advertisers or creative types, and the needs of advertisers to block certain publishers or content types in the RTB environment. This proposal includes an off-lineoffline (batch) protocol as well as the definition for a standard set of features in a real-time bid request.</p>
+<h2><a name="Benefits_for_SSPs:"></a>Benefits for SSPs:</h2>
+<ol>
+<li><strong>Higher CPMs</strong>: If SSPs provide block lists to their DSP partners in an offline, batch manner, the DSP can incorporate filters in their bidding functionality to not bid on inventory they cannot win. This will result in a higher percentage of valid bids per impression. Statistically, this will result in fewer bids to process for bid request and higher CPMs per impression for the publisher.</li>
+<li><strong>Reduce Risk</strong>: Better and more Uniform Enforcement of Publisher Restrictions: If DSPs and SSPs have a unified taxonomy for ad blocking, it will make it easier for DSPs to strictly follow publisher rules when bidding. This will reduce the risk of potential issues with publishers due to human error.</li>
+<li><strong>Increased Revenue</strong> through easier Integration with DSPs: Reducing the manual work to translate blocklists from a SSP’s format to a DSP’s format will reduce the time to launch new campaigns. This will result in easier integration for DSPs, more competitive bidding, and higher revenue for the SSP.</li>
+</ol>
+<h2><a name="Benefits_for_DSPs:"></a>Benefits for DSPs:</h2>
+<ol>
+<li><strong>Lower costs</strong> through more efficient Ad Delivery: Using pre-bid-filters, DSPs can stop bidding where they can’t possibly win due to publisher or creative restrictions. This will reduce DSP costs, since they will be able increase their ratio of valid bids per impression.</li>
+<li><strong>Reduce risk</strong> through better enforcement of advertiser and publisher restrictions: If DSPs and SSPs have a unified taxonomy for ad blocking, it is easier for DSPs to strictly follow advertiser and publisher rules when bidding. This will reduce potential issues with advertisers and SSPs due to human error.</li>
+<li><strong>Greater reach</strong> through easier integration with SSPs: Easier on boarding of new campaigns and creatives reduces the tedious manual work required to translate blocklists from an SSP’s format to a DSP’s format. Using OpenRTB will result in lower costs to onboard a new SSP, and will result in broader reach for the DSP.</li>
+</ol>
+<h1><a name="Needs_of_Publishers_and_Advertisers"></a>Needs of Publishers and Advertisers</h1>
+<h2><a name="Publisher-Side_(SSP)_Needs"></a>Publisher-Side (SSP) Needs</h2>
+<p>Publishers want to control the quality of content on their site. This includes controlling the types of brands or industries that show up in advertisements on publisher pages. Reasons for blocking creatives may include channel conflict or content conflicting with the publisher’s mission.</p>
+<p><strong>Publisher Quality Management Needs:</strong></p>
+<ol>
+<li><strong>Block Advertiser by Landing Page URL</strong> – for example: &#8220;block <a rel="nofollow" href="http://www.carbrand.com/">http://www.carbrand.com</a>&#8220;</li>
+<li><strong>Block Creatives by Attributes of the Creative</strong> – for example: &#8220;block ads that have audio, have video, are &#8216;shaky/flashy&#8217;&#8221;</li>
+<li><strong>Block Advertisers by Industry</strong> – for example, &#8220;block automotive, block credit cards.&#8221;</li>
+</ol>
+<p>Note that a publisher can handling blocking of industries using internal means of matching up advertiser landing pages to industries. A methodology for handling case P3 is not included in the OpenRTB spec, since it can be achieved by filtering on sell-side supplied contextualization, or buy-size supplied contextualization of publisher URLs.</p>
+<h2><a name="Advertiser-Side_(DSP)_Needs:"></a>Advertiser-Side (DSP) Needs:</h2>
+<p>Advertisers are concerned about safety of their brand, specifically, placement of ads near content that is not appropriate for their message.</p>
+<p><strong>Specific Quality Management Needs of Advertisers:</strong></p>
+<ol>
+<li><strong>Block or Specifically Allow Publishers by publisher URL</strong> – for example: &#8220;block <a rel="nofollow" href="http://www.badcontent.org/">http://www.badcontent.org</a>, allow <a rel="nofollow" href="http://www.safecontent.com/">http://www.safecontent.com</a>&#8220;</li>
+<li><strong>Block or Specifically Allow Publishers by the Exchange’s PublisherID and Site ID</strong> – for example: &#8220;block SSP-Pub-5, SSP-Site-6&#8243;</li>
+<li><strong>Block or Specifically Allow Content Channels/Verticals/Categories</strong> – for example: “block Sports, allow Financial”</li>
+<li><strong>Block Publishers by Non-Standard Content Flags, or Audience Ratings</strong> – for example: “block content not suitable for children.”</li>
+<li><strong>Block or Specifically Allow Ads to be placed on pages with user generated content (UGC)</strong> – for example: moderated UGC is acceptable, and un-moderated is not allowed.</li>
+</ol>
+<h1><a name="High-Level_Implementation_Concept:_Offline_Batch_&amp;_Real-Time"></a>High-Level Implementation Concept: Offline Batch &amp; Real-Time</h1>
+<h2><a name="Incremental_Approach"></a>Incremental Approach</h2>
+<p>To make a transition to OpenRTB easier for a DSP or SSP, the design of this protocol is intentionally specified in a way that it can be implemented partially or completely by either party. By design, DSPs and SSPs can roll out pieces of this protocol as needed or desired. OpenRTB provides a framework these kinds of features to be rolled out over time in a way that will be consistent with existing solutions in the industry.</p>
+<p>There are two parts of this protocol: (1) Offline Batch Sync, as well as (2) Real-Time Filtering. In general, offline synchronization is used for managing data that has 100s or 1000s of rows that need to be synced and coordinated. Real-Time Filtering is used for the opposite case, where there are 1000s of things, and relatively few filtering criteria. The pilot implementation group has found that due to how each of our internal systems is designed, off-line synchronization may work better in some cases, and on-line real&#8211;time filtering may work better in others. OpenRTB provides for flexibility in how restrictions are enforced, as long as the DSPs and SSPs use at least one of the methods.</p>
+<p>The specific cases are described in the following sections.</p>
+<h2><a name="Offline_Batch_Synchronization"></a>Offline Batch Synchronization</h2>
+<p><img src="http://www.adroitinteractive.com/clients/openrtb/image_4_2.gif" alt="" /></p>
+<p>In the case of OpenRTB, bidders typically have lists of 100s of advertisers, each with at least one, but the possibility of multiple, names and landing pages. Each advertiser of these may or may not have been blocked by publishers on the SSP side. The offline batch synchronization method provides a method for a DSP to download publisher restrictions during campaign setup. The figure above shows a simple request-response interface between the DSP and SSP. If blocklists change over time due to changes in publisher preferences, a DSP can receive this information by polling the SSP’s synchronization service on a periodic basis (for example, hourly).</p>
+<p>In the figure above, “B1” is a batch request with a list of current advertisers including landing page URLs and full-text advertiser names (for publisher reference). The SSP will query its blocklist database, and return the message “B2”, a response that includes a mapping of each landing page URL to a list of Blocked publisher IDs and Site IDs.</p>
+<p>Under the OpenRTB protocol, participating SSPs will maintain a simple, standard web service to facilitate these synchronization calls.</p>
+<p>Note that this method does not preclude the SSP from running their own blocklist database with their own definitions and taxonomies. However, if one is already set up, the SSP will need to translate these blocklist definitions into the universal format. This allows a SSP to provide maximum flexibility and features to a publisher, while still providing a consistent interface to DSPs.</p>
+<h1><a name="Real-Time_Blocking_Protocol"></a>Real-Time Blocking Protocol</h1>
+<p><img src="http://www.adroitinteractive.com/clients/openrtb/image_4_3.gif" alt="" /></p>
+<p>In the case of creative attribute and content category blocking, there is a limited list of attributes, so it may make more computational sense to process these with each real-time bid request. Creative tagging is done ahead of time by DSPs.</p>
+<p>Given a standardized list of creative attributes that are (yes/no) questions, DSPs can tag each creative with quality markers indicating if a creative falls into a category. The SSP will allow publishers to pre-set what’s allowed and not -allowed on their site. As a part of the real-time bid request (message RT1), the SSP will include the blocked creative attribute types. Message RT1 will also include the Publisher ID and Site ID for real-time advertiser blocking.</p>
+<p>The bidder responds in the normal fashion with a bid response (message RT2). If a bid is submitted the DSP will only send advertisers and creatives that are eligible for the specified publisher ID, site ID, and allowed creative attributes. Since data may be out of date or not yet synced using the hourly batch protocol, it’s suggested that the SSP double check the contents of the response to make sure the DSP is in compliance. Message RT2 also includes a DSP unique ID identifying the creative, so that any issues can be resolved quickly.</p>
+<p>Optionally, some SSPs may choose to provide impression-by-impression or batch reports (message RT3) noting any filtered advertisers or creatives back to the DSP. Message RT3 is not specified in this release of the OpenRTB protocol.</p>
+<p>Optionally, SSPs may provide content channel information about each publisher URL. The recommendation is to use the standard taxonomy presented in the IAB network and exchanges guidelines (see: <a rel="nofollow" href="http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf">http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf</a>). A list of these categories as of June 2010 is provided below.</p>
+<h1><a name="Offline/Batch_Synchronization_Specification"></a>Offline/Batch Synchronization Specification</h1>
+<p>This section contains specifications for three different operations: <strong>Message Verification (Section 5.1) </strong>Advertiser-Centric Blocklist synchronization (5.2) <strong>Publisher-Centric Blocklist synchronization (5.3)</strong></p>
+<h2><a name="Batch_Synchronization_Message_Verification"></a>Batch Synchronization Message Verification</h2>
+<p>Verification of the message content is handled inline with each request. Every request will contain an identification object. The identifier&#8217;s token is constructed by computing the MD5 checksum of the JSON request message, less the token attribute, concatenated with a shared secret. The receiver of the request must remove the token from the request and generate an MD5 checksum with the same shared secret to confirm authenticity. The shared secret may take any form (i.e. text string or key encryption) and is communicated between the parties outside of this protocol.</p>
+<p>This specification does not preclude methods and/or procedures that an internal technical operations team will employ to secure this solution; for example ip address filtering and SSL encryption.</p>
+<p><strong>Identification Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>organization</td>
+<td>required</td>
+<td>string</td>
+<td>The identifier used by the receiver to identify the requesting organization.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>required</td>
+<td>long</td>
+<td>The number of milliseconds since EPOC this request was made.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>required</td>
+<td>string</td>
+<td>The associated MD5 token used to confirm the authenticity of and uniquely identify the request.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request:</p>
+<pre>{
+  “identification”: {
+    "organization": "The DSP",
+    "timestamp": 1289405763341,
+    "token": "05876f434f5bf2d7b8c1e3de67135c6a"
+  },
+...
+(rest of message)
+,,,
+}</pre>
+<p>All request responses include the identification object in addition to the status object. The status object contains the necessary error messages and status for the associated request. The token of the identification object is constructed in the same manner as described above.</p>
+<p><strong>Status Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>requestToken</td>
+<td>required</td>
+<td>string</td>
+<td>The identifier associated with the original request.</td>
+</tr>
+<tr>
+<td>statusCode</td>
+<td>required</td>
+<td>int</td>
+<td>An integral status code associated with the request. <strong>0</strong> indicates no error. <strong>1</strong> indicates authentication error. <strong>2</strong> indicates a duplicate transaction. <strong>3</strong> indicates other error (see statusMessage).</td>
+</tr>
+<tr>
+<td>statusMessage</td>
+<td>required</td>
+<td>string</td>
+<td>For status codes of 0, ”success” is returned; otherwise and error message is present describing the issue with validation (for example, “incorrect password”, or “user not found”)</td>
+</tr>
+</tbody>
+</table>
+<p>Example Response:</p>
+<pre>{
+  “identification”: {
+    "organization": "The SSP",
+    "timestamp": 1289420873341,
+    "token": "5ff9c3f8511a79a3edb8b153a18002a3"
+  },
+  “status”: {
+    "requestToken": "05876f434f5bf2d7b8c1e3de67135c6a",
+    "statusCode": 0,
+    "statusMessage": "success"
+  },
+...
+(rest of message)
+...
+}</pre>
+<h2><a name="Advertiser-Centric_Offline_Synchronization_Service"></a>Advertiser-Centric Offline Synchronization Service</h2>
+<p>The advertiser-centric offline synchronization service allows a DSP to automatically pull and update all publisher blocklist data from the SSP and set up pre-filters in their bidding system. It is expected that a DSP will periodically poll for updates from the SSP, so that any publisher restrictions can be automatically propagated to buyers.</p>
+<h3><a name="Advertiser-Centric_Request_Parameters"></a>Advertiser-Centric Request Parameters</h3>
+<p><strong>Advertiser Blocklist Synchronization Request</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>identification</td>
+<td>required</td>
+<td>object</td>
+<td>See “Identification Object” definition.</td>
+</tr>
+<tr>
+<td>advertisers</td>
+<td>required</td>
+<td>list of object</td>
+<td>One or more “Advertiser Object” definitions, specified in the table below.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advertisers Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>landingPageTLD</td>
+<td>required</td>
+<td>string</td>
+<td>The Advertiser’s landing page url as a top-level domain (TLD). Advertiser landing pages are expected to be a a generic landing page for the advertiser, not (for example) a redirect url through an ad server. Example: “carbrand.com”. Should be in lower case letters. This field is used as a unique ID for the advertiser between the DSP and SSP.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>string</td>
+<td>The advertiser’s name. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+<tr>
+<td>sinceThisTimestamp</td>
+<td>optional</td>
+<td>longint</td>
+<td>If specified, the API will only return changes since this POSIX time stamp. By default, the API will return all results.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request:</p>
+<pre>{
+  "identification": { ... },
+  "advertisers": [
+    {  
+        "landingPageTLD": "acmeluxuryfurniture.com",
+        "name": "Acme Luxury Furniture",
+    },
+    {
+        "landingPageTLD": "luxurycarbrand.com",
+        "name": "Luxury Car Brand",
+        "sinceThisTimestamp":  1286754444
+    }
+}</pre>
+<h3><a name="Advertiser-Centric_Response_Parameters"></a>Advertiser-Centric Response Parameters</h3>
+<p><strong>Advertiser Blocklist Synchronization Response</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>identification</td>
+<td>required</td>
+<td>object</td>
+<td>See “Identification Object” description.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>required</td>
+<td>object</td>
+<td>See “Status Object” description. No additional error codes are specified as a part of this response.</td>
+</tr>
+<tr>
+<td>advertisers</td>
+<td>required</td>
+<td>list of objects</td>
+<td>One or more “Advertiser Object” definitions, specified in the table below.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advertiser Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>landingPageTLD</td>
+<td>required</td>
+<td>string</td>
+<td>The advertiser’s landing page url as a top-level domain (TLD)., The value specified here should be equivalent to the one specified in the request.</td>
+</tr>
+<tr>
+<td>blocklist</td>
+<td>optional</td>
+<td>list of object</td>
+<td>One or more “Blocklist Object” definitions, specified in the table below. If left blank, there is no block list for this advertiser.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Blocklist Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>publisherID</td>
+<td>required</td>
+<td>string</td>
+<td>SSP’s unique ID for thea publisher. There are no restrictions imposed on the content of this value beyond the specified datatype (i.e. the value may be alphanumeric).</td>
+</tr>
+<tr>
+<td>publisherName</td>
+<td>optional</td>
+<td>string</td>
+<td>Human readable name of the publisher. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+<tr>
+<td>siteID</td>
+<td>required if site level blocking is used</td>
+<td>string</td>
+<td>If blocking is at the site level, then specify the SSP’s site ID. There are no restrictions imposed on the content of this value beyond the specified datatype (i.e. the value may be alphanumeric). If this field is blank, then all sites under a publisher are blocked.</td>
+</tr>
+<tr>
+<td>siteName</td>
+<td>optional</td>
+<td>string</td>
+<td>Human readable name of the site ID, if site level blocking is used. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Response:</p>
+<pre>{
+  "identification": { ... },
+  "status": 0{ ... },
+  "advertiser": [
+    {
+          "landingPageTLD": "acmeluxuryfurniture.com",
+          "blocklList": [
+                {
+                  "publisherID": "3422",
+                  "publisherName": "Joe's News"
+                },
+                {
+                  "publisherID": "2342",
+                  "publisherName": "Big Portal",
+                  "siteId": "1",
+                  "siteName": "Finance section"
+                },
+                {
+                  "publisherID": "23423",
+                  "publisherName": "Smith Blog",
+                  "siteID": "223",
+                  "siteId": "Technology Section"
+                },
+                {
+                  "publisherID": "423",
+                  "publisherName": "Smith Blog",
+                  "siteId": "23",
+                  "siteName": "Cars Section"
+                },
+                {
+                  "publisherID": "34223",
+                  "publisherName": "Jones Blog"
+                }
+          ]
+    },
+    {
+          "landingPageTLD": "luxurycarbrand.com",
+          "blockList": [
+                {
+                  "publisherID": "3422",
+                  "publisherName": "Joe's News"
+                }
+            ]
+     }  
+  ]
+}</pre>
+<h1><a name="Real-Time_Blocklist_Spec"></a>Real-Time Blocklist Spec</h1>
+<h2><a name="Real-Time_Blocking_of_Creatives_using_Universal_Creative_Attribu"></a>Real-Time Blocking of Creatives using Universal Creative Attributes</h2>
+<p>This system will allow enforcement of publisher-mandated creative attribute restrictions in real time, same way that advertiser blocks are currently enforced.</p>
+<ul>
+<li>SSP sends to DSP list of allowed creative types on each bid request</li>
+<li>DSP sends to SSP list of creative types that apply to the creative on each bid</li>
+</ul>
+<h3><a name="(From_SSP_to_DSP)_List_of_Allowed_Creative_Attributes"></a>(From SSP to DSP) List of Allowed Creative Attributes</h3>
+<p>DSPs will tag creatives with the following universal list of creative attributes. SSPs will send a list indicating which attributes are allowed in real-time with each bid request. The choice of how to implement sending this list of tags is left up to the SSP; however, the attribute lists must use the standard IDs specified below.</p>
+<p><strong>Universal Creative Attributes and IDs:</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>Creative Attribute</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Standard Ad</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Audio Ad (Auto Play)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Audio Ad (User Initiated)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Expandable (Automatic)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Expandable (User Initiated &#8211; Click)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Expandable (User Initiated &#8211; Rollover)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>in Banner Video Ad (Auto Play)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>in Banner Video Ad (User Initiated)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pop (such as Over, Under, or upon Exit)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Provocative or Suggestive Image Ads</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Shaky/Flashing/Flickering Ad, Extreme Animation, or Smileys</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Survey Ads (such as Dynamic Logic, Insight Express, Vizu, etc.)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Text Only Ads</td>
+</tr>
+<tr>
+<td>14</td>
+<td>User Interactive (such as embedded games)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Windows Dialog Ad or Alert Style Ad</td>
+</tr>
+</tbody>
+</table>
+<p>SSPs will send a list of blocked attributes in their real-time bid request to each DSP. The exact format of this message will depend on each SSP’s real-time bidding protocol. One possible encoding is an integer or hex string representing a bit field that contains each allowed creative attribute.</p>
+<p>In real-time, with each bid request, the DSP will eliminate and creatives that do not satisfy the creative attribute restrictions. This allows a publisher to manage very specific tag-level restrictions on their site. For example, a certain ad tag may be the one designated for in banner video ads.</p>
+<p>A DSP may implement creative-attribute filtering in real-time, or through pre-filters using the publisher-centric synchronization service.</p>
+<h3><a name="(From_DSP_to_SSP)_Real-Time_Creative_Attribute"></a>(From DSP to SSP) Real-Time Creative Attribute</h3>
+<p>To allow real-time publisher-side enforcement of creative attribute compliance the DSP must send with each bid request the list of creative attributes that apply. If none of the special types apply, the &#8220;Standard Ad&#8221; creative type should be used.</p>
+<p>The SSP will then be able to do real-time enforcement of creative types for each bid, which will work the same way as it does for blocklist enforcement.</p>
+<p>The implementation is dependent on each SSP&#8217;s real-time bidding protocol. One possible encoding is an integer or hex string representing a bit field that contains all creative attributes that apply to the creative.</p>
+<h2><a name="(From_DSP_to_SSP)_Real-Time_Creative_ID"></a>(From DSP to SSP) Real-Time Creative ID</h2>
+<p>The DSP will include a Creative ID in its bid response. This is included so that the SSP can quickly flag any problematic creative for review or blocking. The creative ID will be formatted as a string.</p>
+<h2><a name="(From_SSP_to_DSP)_Real-Time_Publisher_ID_and_Site_ID"></a>(From SSP to DSP) Real-Time Publisher ID and Site ID</h2>
+<p>To complete the pre-filtering of advertisers for each impression, SSPs should provide the Publisher ID and Site ID for impression with each real-time bid-request. These are assumed to be strings, in the same format as was provided by the SSP in the offline / batch sync.</p>
+<h2><a name="Real-Time_Blocking_of_Content_Categories"></a>Real-Time Blocking of Content Categories</h2>
+<p>The OpenRTB protocol group suggests the use of the IAB Networks and Exchanges Taxonomy for providing information about content categories. Details of the guidelines can be found here: <a rel="nofollow" href="http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf">http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf</a></p>
+<p>For Reference, tier 1 categories are listed here. IAB25 and IAB26 represent “non-standard content” and “illegal content”, as listed in the networks and exchanges guidelines.</p>
+<table>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>IAB Name</strong></td>
+</tr>
+<tr>
+<td>IAB1</td>
+<td>Arts &amp; Entertainment</td>
+</tr>
+<tr>
+<td>IAB2</td>
+<td>Automotive</td>
+</tr>
+<tr>
+<td>IAB3</td>
+<td>Business</td>
+</tr>
+<tr>
+<td>IAB4</td>
+<td>Careers</td>
+</tr>
+<tr>
+<td>IAB5</td>
+<td>Education</td>
+</tr>
+<tr>
+<td>IAB6</td>
+<td>Family &amp; Parenting</td>
+</tr>
+<tr>
+<td>IAB7</td>
+<td>Health &amp; Fitness</td>
+</tr>
+<tr>
+<td>IAB8</td>
+<td>Food &amp; Drink</td>
+</tr>
+<tr>
+<td>IAB9</td>
+<td>Hobbies &amp; Interests</td>
+</tr>
+<tr>
+<td>IAB10</td>
+<td>Home &amp; Garden</td>
+</tr>
+<tr>
+<td>IAB11</td>
+<td>Law Gov&#8217;t &amp; Politics</td>
+</tr>
+<tr>
+<td>IAB12</td>
+<td>News</td>
+</tr>
+<tr>
+<td>IAB13</td>
+<td>Personal Finance</td>
+</tr>
+<tr>
+<td>IAB14</td>
+<td>Society</td>
+</tr>
+<tr>
+<td>IAB15</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>IAB16</td>
+<td>Pets</td>
+</tr>
+<tr>
+<td>IAB17</td>
+<td>Sports</td>
+</tr>
+<tr>
+<td>IAB18</td>
+<td>Style &amp; Fashion</td>
+</tr>
+<tr>
+<td>IAB19</td>
+<td>Technology &amp; Computing</td>
+</tr>
+<tr>
+<td>IAB20</td>
+<td>Travel</td>
+</tr>
+<tr>
+<td>IAB21</td>
+<td>Real Estate</td>
+</tr>
+<tr>
+<td>IAB22</td>
+<td>Shopping</td>
+</tr>
+<tr>
+<td>IAB23</td>
+<td>Religion and Spirituality</td>
+</tr>
+<tr>
+<td>IAB24</td>
+<td>Uncategorized</td>
+</tr>
+<tr>
+<td>IAB25</td>
+<td>Non Standard Content</td>
+</tr>
+<tr>
+<td>IAB26</td>
+<td>Illegal Content</td>
+</tr>
+</tbody>
+</table>
+<h2><a name="Real-Time_Reporting_of_UGC_Code_in_Bid_Request"></a>Real-Time Reporting of UGC Code in Bid Request</h2>
+<p>Many advertisers require that DSPs run on inventory that does not include user-generated content. SSPs should report UGC status of the publisher, site, or placement with each bid request with the following format:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>UGC Code</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>0</td>
+<td>No user-generated content</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Moderated User-Generated Content</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Unmoderated User-Generated Content</td>
+</tr>
+</tbody>
+</table>
+<p>If this field is left blank, it can be assumed that UGC status for that publisher is unknown.</p>
+<hr />
+<h1><a name="Work_in_Progress"></a>Work in Progress</h1>
+<p>This section contains a list of future topics, which will not be included in the initial release of OpenRTB</p>
+<h2><a name="(Optional)_Publisher-Centric_Offline_Synchronization_Service"></a>(Optional) Publisher-Centric Offline Synchronization Service</h2>
+<p>This section discusses a method of offline synchronization for various publisher preferences. Publisher preferences contain inclusion and exclusion lists. Publisher preference lists could be: URL, Creative Attribute, Creative Category RichMedia Vendors, Tracking/Pixel Vendors.</p>
+<p>The Publisher Centric Synchronization Service provides a method for ad operation teams to answer queries for pre-filtering that may not be covered by the advertiser-centric method. For example: “tell me all of the publishers that accept creatives with audio” or “tell me all of the publishers that accept expandables from RichMedia Vendor X”.</p>
+<p>In addition, depending on how a DSP has set up it’s pre-filtering; this synchronization method may be more convenient.</p>
+<h2><a name="(From_SSP_to_the_DSP)_Real-Time_Technology_Flags"></a>(From SSP to the DSP) Real-Time Technology Flags</h2>
+<p>In addition to the creative attributes list, SSPs could send real-time flags indicating allowed technology vendors and allowed creative technologies.</p>
+<h2><a name="Unified_Handling_of_Private_/_Prioritized_Seats"></a>Unified Handling of Private / Prioritized Seats<a href="http://code.google.com/p/openrtb/wiki/Specs#Unified_Handling_of_Private_/_Prioritized_Seats">¶</a></h2>
+<p><em>This section of is an initial version laying out basic principles. It should not be considered a complete standard.</em></p>
+<p>Private seats and prioritized bidding are two names for a method for a sending a bid request which may be able to receive multiple bid responses serving different parties, which may have different billing relationships with a publisher. Two key principles are laid out here:</p>
+<ol>
+<li>In the real-time bid request, the SSP should include a flag specifying if seats are required. If no seat is required, then DSP can assume no special restrictions are imposed (bidding follows standard rules)</li>
+<li>If seats are required for bidding, a list of potential seats should be presented by the SSP in the bid request.</li>
+<li>If multiple responses are allowed, the maximum number of potential responses per bid response should be given in the bid request.</li>
+<li>In the bid response, the DSP should provide the seat ID for each bid.</li>
+</ol>
+<p style="text-align: right;">Source:OpenRTB.info</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>DSP Role In Digital Market</title>
+		<link>http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market</link>
+		<comments>http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market#comments</comments>
+		<pubDate>Tue, 21 Dec 2010 15:16:32 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[digital]]></category>
+		<category><![CDATA[DSP]]></category>
+		<category><![CDATA[market]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=114</guid>
+		<description><![CDATA[A demand side platform (DSP) is a system that allows digital advertisers to manage multiple ad exchange and data exchange accounts through one interface. Real time bidding for display online ads takes place within the ad exchanges, and by utilizing a DSP, marketers can manage their bids for the banners and the pricing for the [...]]]></description>
+			<content:encoded><![CDATA[<p><!-- p { margin-bottom: 0.21cm; }a:link {  } --><span style="color: #000000;"><span><span style="font-size: small;">A demand side platform (DSP) is a system that allows </span></span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://en.wikipedia.org/w/index.php?title=Digital_advertiser&amp;action=edit&amp;redlink=1"><span><span style="font-size: small;">digital advertisers</span></span></a></span></span><span style="color: #000000;"><span><span style="font-size: small;"> to manage multiple </span></span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://en.wikipedia.org/wiki/Ad_exchange"><span><span style="font-size: small;">ad exchange</span></span></a></span></span><span style="color: #000000;"><span><span style="font-size: small;"> and </span></span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://en.wikipedia.org/wiki/Data_exchange"><span><span style="font-size: small;">data exchange</span></span></a></span></span><span style="color: #000000;"><span><span style="font-size: small;"> accounts through one interface. Real time bidding for display </span></span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://en.wikipedia.org/wiki/Online_advertising"><span><span style="font-size: small;">online ads</span></span></a></span></span><span style="color: #000000;"><span><span style="font-size: small;"> takes place within the ad exchanges, and by utilizing a DSP, </span></span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://en.wikipedia.org/wiki/Marketer"><span><span style="font-size: small;">marketers</span></span></a></span></span><span style="color: #000000;"><span><span style="font-size: small;"> can manage their bids for the banners and the pricing for the data that they are layering on to target their audiences.</span></span></span></p>
+<p><!-- p { margin-bottom: 0.21cm; } -->So what does a demand-side platform <em>do</em>, exactly? They typically offer the following common features:</p>
+<ul>
+<li>
+<blockquote><p>A single system that 	connects to multiple ad exchanges and other media suppliers, 	accessed by a single user interface.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Campaign management tools 	to manually target or automatically optimize campaigns.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Automated bid management 	capabilities, often including real-time bidding.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Advanced analysis and 	“decisioning” about the value and desirability of ad impression 	opportunities.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Ability to capture and 	manage brand data and third-party data to improve targeting.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Control of budgets and 	campaign rates — across all media sources.</p></blockquote>
+</li>
+<li>
+<blockquote><p>Fully integrated reporting of campaign performance 	across multiple media suppliers.</p></blockquote>
+</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Digital Media With DSP?
+DSP ar&#8230;</title>
+		<link>http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar</link>
+		<comments>http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar#comments</comments>
+		<pubDate>Tue, 21 Dec 2010 15:08:34 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[DSP]]></category>
+		<category><![CDATA[openDSP]]></category>
+		<category><![CDATA[RTB]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar</guid>
+		<description><![CDATA[Digital Media With DSP? DSP are being used by advertisers to manage media and automate bids in real time using only one interface.]]></description>
+			<content:encoded><![CDATA[<p>Digital Media With DSP?<br />
+DSP are being used by advertisers  to manage media and automate bids in real time using only one interface.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Ability To Manage Digital Media With DSP</title>
+		<link>http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp</link>
+		<comments>http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp#comments</comments>
+		<pubDate>Tue, 21 Dec 2010 15:05:31 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Ability]]></category>
+		<category><![CDATA[Media]]></category>
+		<category><![CDATA[ToManage]]></category>
+		<category><![CDATA[WithDSP]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=110</guid>
+		<description><![CDATA[Demand Side Platforms are being used by advertisers because of their ability to manage media and automate bids in real time while using only one interface. Perhaps the most appealing aspect of using a DSP is that it is a more simple way to manage real time bidding. Agencies are able to more easily choose [...]]]></description>
+			<content:encoded><![CDATA[<p><!-- p { margin-bottom: 0.21cm; } --><span><span style="font-size: small;">Demand Side Platforms are being used by advertisers because of their ability to manage media and automate bids in real time while using only one interface. Perhaps the most appealing aspect of using a DSP is that it is a more simple way to manage real time bidding. Agencies are able to more easily choose how and where their ads are being placed. At the same time, they are able to utilize many inventory sources at once, and this allows for better performance and ROI from campaigns. Most DSP&#8217;s also will have built in campaign management tools which allow the user to either automatically target or individually (manually) target with their ads. This also allows for better time-management.</span></span></p>
+<p>The benefit to DSP&#8217;s and their real time bidding technology lies in the convenience. With the use of a demand side platform, there is no need to log-in to different servers and systems for every provider an advertiser is working with. Most DSP&#8217;s have the ability to connect with any Ad Server. Some have compared the efficiency of demand side platforms to that of an SEM campaign, all while having the transparency and manageability advertisers want and need.</p>
+<p><!-- p { margin-bottom: 0.21cm; } -->Viewing an audience and evaluating inventory on a large scale allows users of DSP&#8217;s to track behavioral tendencies and retarget accordingly. This is because more of the internet exchanges are visible in one place, and the more opportunities you have to target, the more easily you may be able to judge value on a specific campaign or amount of impressions. The result: an increase in ROI.</p>
+<p>Some DSP&#8217;s also allow for you to set a budget and control campaigns on a much larger scale. This eliminates the need for micro-managing media across many engines and ad serving vehicles. On top of this, DSP reporting is generally more easily evaluated because all data and results can be viewed on one program.</p>
+<p>DSP&#8217;s are slowly replacing more traditional ad serving ventures as they enable users to save money, increase ROI and more easily manage their campaigns.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>DSP Features</title>
+		<link>http://www.opendsp.com/uncategorized/2010/12/dsp-features</link>
+		<comments>http://www.opendsp.com/uncategorized/2010/12/dsp-features#comments</comments>
+		<pubDate>Tue, 21 Dec 2010 14:58:35 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Benefits]]></category>
+		<category><![CDATA[DSP]]></category>
+		<category><![CDATA[features]]></category>
+		<category><![CDATA[RTB]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=107</guid>
+		<description><![CDATA[Demand-side platforms (DSPs), Real-time bidding and ad exchanges have attracted a lot of media coverage over the last few months: in fact, Forrester forecasts that by the end of the year 30% of ad spend will be channelled through DSPs. However much of the coverage is confusing, with commentators failing to define and distinguish the [...]]]></description>
+			<content:encoded><![CDATA[<p><!-- p { margin-bottom: 0.21cm; }a:link {  } --><span><span style="font-size: small;">Demand-side platforms (DSPs), Real-time bidding  and  ad exchanges have attracted a lot of media coverage over the last few months: in fact, Forrester forecasts that by the end of the year 30% of ad spend will be channelled through DSPs. However much of the coverage is confusing, with commentators failing to define and distinguish the roles of ad exchanges and DSPs, and not explaining how each helps advertisers to spend their ad budgets more effectively and publishers to increase their ad revenues.</span></span></p>
+<p><span><span style="font-size: small;"> OpenX has just released a white paper titled: </span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://www.openx.org/en/resources"><span><span style="font-size: small;">Demand Side Platforms: How Publishers Can Profit</span></span></a></span></span><strong><span><span style="font-size: small;"> </span></span></strong><span><span style="font-size: small;">that builds on the last OpenX white paper, </span></span><span style="color: #000080;"><span style="text-decoration: underline;"><a href="http://www.openx.org/en/resources"><span><span style="font-size: small;">Ad Exchanges vs Ad Networks: how they stack up</span></span></a></span></span><span><span style="font-size: small;">, in which we explained what ad exchanges are, how they differ from ad networks, and what the pros and cons are for publishers and advertisers. In this white paper, we take a similar look at DSPs.  We explain what a DSP is, how DSPs work with exchanges, and how they help advertisers by: </span></span></p>
+<ol>
+<li><span><span style="font-size: small;">Enabling 	them to buy across multiple exchanges through a single 	user-interface </span></span></li>
+<li><span><span style="font-size: small;">Providing 	a holistic view of spend and performance across exchanges </span></span></li>
+<li><span><span style="font-size: small;">Providing 	analytic tools to drive more effective real-time bid pricing </span></span></li>
+</ol>
+<p><span><span style="font-size: small;"> We explore how DSPs provide opportunities for publishers and advertisers, by attracting bigger ad budgets and enabling more of those dollars to filter through to publishers rather than be taken by intermediaries. Finally we outline how publishers can realize this opportunity, by making their inventory available on an ad exchange like OpenX Market.</span></span></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/uncategorized/2010/12/dsp-features/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Benefits For  Advertisers With DSP</title>
+		<link>http://www.opendsp.com/opendsp/2010/12/benefits-for-advertisers-with-dsp</link>
+		<comments>http://www.opendsp.com/opendsp/2010/12/benefits-for-advertisers-with-dsp#comments</comments>
+		<pubDate>Thu, 16 Dec 2010 13:59:41 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[OpenDSP]]></category>
+		<category><![CDATA[Advertisers]]></category>
+		<category><![CDATA[Benefits]]></category>
+		<category><![CDATA[For]]></category>
+		<category><![CDATA[With DSP]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=81</guid>
+		<description><![CDATA[Demand Side Platforms is very benifit for Advertiser because Advertiser can Maintain (Real Time Bidding) RTB and many other advantages is for advertiser to maintain.Many companies run multiple outbound dialing systems across multiple sites &#8211; managing which customer records go to which call centres can begin to become a very complex and time consuming task. [...]]]></description>
+			<content:encoded><![CDATA[<p><!-- p { margin-bottom: 0.21cm; } --><span style="color: #666666;"><span><span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; font-color: #000000;">Demand Side Platforms  is very benifit for Advertiser because Advertiser can Maintain (Real Time Bidding) RTB and many other advantages is for advertiser to maintain.Many companies run multiple outbound dialing systems across multiple sites &#8211; managing which customer records go to which call centres can begin to become a very complex and time consuming task.</span></span></span></p>
+<p><span style="color: #666666;"><span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; font-color: #000000;"><span>Demand Side Platforms can manage which allow user to which or either automatically target or with manually target we can manage with a single interface.Benefits to advertiser means,In real time bidding no need to log in in different servers,M</span><span>ost DSP&#8217;s have the ability to connect with any Ad Server.</span></span></span></p>
+<p><span style="color: #666666;"><span style="font-size: 12px; font-family: Verdana, Arial, Helvetica, sans-serif; font-color: #000000;"><span>Some have compared the efficiency of demand side platforms to that ,As the number of sites on the Web increased search engines started appearing to help people find information quickly. campaign, all while having the transparency and manageability advertisers want and need.</span><span style="font-size: 12px;">.</span>DSP is useful to set a budget and all the data or result belongs to DSP can be viewed in a single program.</span></span></p>
+<p><span style="color: #666666;"><span><span style="font-size: 12px;"><br />
+</span></span></span></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/opendsp/2010/12/benefits-for-advertisers-with-dsp/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>What is a demand-side platform?</title>
+		<link>http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2</link>
+		<comments>http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2#comments</comments>
+		<pubDate>Wed, 15 Dec 2010 15:14:52 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[OpenDSP]]></category>
+		<category><![CDATA[Demand Side Platform]]></category>
+		<category><![CDATA[DSP]]></category>
+		<category><![CDATA[Real Time Bidding]]></category>
+		<category><![CDATA[RTB]]></category>
+		<category><![CDATA[Sale Side Platform]]></category>
+		<category><![CDATA[SSP]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=47</guid>
+		<description><![CDATA[Ad exchanges, the technology platforms that seek to bring efficiency to ad impression buying, are gaining popularity and interest with online marketers. Much like paid search, ad exchanges offer advertisers transparency in an auction-based model where buyers and sellers let the technology play matchmaker based on the value of each and every impression. It&#8217;s an [...]]]></description>
+			<content:encoded><![CDATA[<p>Ad exchanges, the technology platforms that seek to bring efficiency to ad impression buying, are gaining popularity and interest with online marketers. Much like paid search, ad exchanges offer advertisers transparency in an auction-based model where buyers and sellers let the technology play matchmaker based on the value of each and every impression. It&#8217;s an industry shift to buying audiences, not sites or placements, and those who master their data can win in this stock market-like environment.</p>
+<p>Just as paid search management platforms arose to help users manage multiple engine accounts, so too was the need for tools to allow management of multiple ad exchange accounts. Thus, the demand-side platform (DSP) was born.</p>
+<p>Like search management platforms, DSPs bring all accounts into one tool for centralized management and reporting, but demand-side platforms do more than simply bring efficiency to handling multiple ad exchange accounts. They act as a central hub for handling whatever data you can bring in to help with the real-time bidding valuation that is crucial to successful ad exchange management.</p>
+<p>For example, you may be willing to bid a premium price to retarget users who have already visited your store or even just those who have abandoned your shopping carts. You can even subscribe to data exchanges and use that information to understand which impressions are most valuable to you. Using cookie data and data exchanges to increase targeting effectiveness is not a new concept; however, because you&#8217;re using one DSP and not being put into silos between different exchanges, the combined power of all of your data is leveraged.</p>
+<p>One glaring industry issue is also solved by having an in-house DSP. Because many ad networks supplement their inventory with ad exchanges, it&#8217;s very possible that using multiple ad networks at the same time will result in you actually bidding against yourself on the same impression. This has the potential to drive your costs up in an auction-based buying model.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>OpenRTB Announcement</title>
+		<link>http://www.opendsp.com/openrtb/2010/12/openrtb-announcement</link>
+		<comments>http://www.opendsp.com/openrtb/2010/12/openrtb-announcement#comments</comments>
+		<pubDate>Mon, 13 Dec 2010 07:15:30 +0000</pubDate>
+		<dc:creator>admin</dc:creator>
+				<category><![CDATA[OpenRTB]]></category>
+		<category><![CDATA[Open Standards]]></category>
+		<category><![CDATA[Real Time Bidding]]></category>
+		<category><![CDATA[Sale Side Platform]]></category>
+		<category><![CDATA[Sell side platform]]></category>
+		<category><![CDATA[SSP]]></category>
+
+		<guid isPermaLink="false">http://www.opendsp.com/?p=54</guid>
+		<description><![CDATA[Press Release: Technology leaders representing both the demand and supply sides of the digital advertising ecosystem have teamed to form a unique consortium aimed at improving real-time bidding (RTB) through the creation of open industry standards. The newly minted group, called OpenRTB, summons perspectives and solutions from DSPs DataXu,MediaMath and Turn, and SSPs AdMeld, PubMatic and the Rubicon Project. The six [...]]]></description>
+			<content:encoded><![CDATA[<p><strong> </strong></p>
+<p><strong> </strong></p>
+<ul>
+<li>
+<ul><strong> Press Release:</strong></ul>
+</li>
+<p><strong> </strong></p>
+<p><strong> </strong></ul>
+<p>Technology leaders representing both the demand and supply sides of the digital advertising ecosystem have teamed to form a unique consortium aimed at improving real-time bidding (RTB) through the creation of open industry standards.</p>
+<p>The newly minted group, called OpenRTB, summons perspectives and solutions from DSPs <a href="http://ctt.marketwire.com/?release=697562&amp;id=36682&amp;type=1&amp;url=http%3a%2f%2fwww.dataxu.com%2f">DataXu</a>,<a href="http://ctt.marketwire.com/?release=697562&amp;id=36685&amp;type=1&amp;url=http%3a%2f%2fwww.mediamath.com%2f">MediaMath</a> and <a href="http://ctt.marketwire.com/?release=697562&amp;id=36688&amp;type=1&amp;url=http%3a%2f%2fwww.turn.com%2f">Turn</a>, and SSPs <a href="http://ctt.marketwire.com/?release=697562&amp;id=36691&amp;type=1&amp;url=http%3a%2f%2fwww.admeld.com%2f">AdMeld</a>, <a href="http://ctt.marketwire.com/?release=697562&amp;id=36694&amp;type=1&amp;url=http%3a%2f%2fwww.pubmatic.com%2f">PubMatic</a> and the <a href="http://ctt.marketwire.com/?release=697562&amp;id=36697&amp;type=1&amp;url=http%3a%2f%2fwww.rubiconproject.com%2f">Rubicon Project</a>. The six companies lend their respective strengths to developing new open standards that will drive greater flexibility and consistency for advertisers and publishers, in turn, fueling the growth of digital advertising.</p>
+<p>&#8220;Agreeing on a set of standards will enable all of us to streamline the real-time media buying process and create a stronger foundation on which to build future industry innovations,&#8221; noted <a href="http://ctt.marketwire.com/?release=697562&amp;id=36700&amp;type=1&amp;url=http%3a%2f%2fwww.dataxu.com%2fabout%2fexecutive-team%2f">Bill Simmons</a>, chief technology officer at DataXu. &#8220;It&#8217;s critical that we join to overcome these common technical challenges if as a group we wish to see the industry realize its full potential of delivering superior marketing results to agencies and brands.&#8221;</p>
+<p>OpenRTB&#8217;s initial mission is to standardize a protocol for solving one of the most error-prone and time, cost and labor-intensive processes to date &#8211; managing publisher and advertiser blocklists.</p>
+<p>The initial OpenRTB protocol and includes:</p>
+<ul>
+<li>DSP to SSP Advertiser Batch Synchronization: a method for automatically retrieving a list of publisher restrictions for each advertiser</li>
+<li>SSP to DSP Publisher Batch Synchronization: a method for automatically retrieving publisher properties and creative restrictions for each DSP</li>
+<li>RTB request standards for publisher creative restrictions</li>
+</ul>
+<p>Milestones, participants&#8217; quotes and <a href="http://ctt.marketwire.com/?release=697562&amp;id=36703&amp;type=1&amp;url=http%3a%2f%2fwww.dataxu.com%2f2010%2f12%2fthe-digital-ad-open-standards%2f">blog posts</a> will be available on the OpenRTB website at <a href="http://ctt.marketwire.com/?release=697562&amp;id=36706&amp;type=1&amp;url=http%3a%2f%2fopenrtb.info">http://openrtb.info</a>, which also directs users to the OpenRTB code located at <a href="http://ctt.marketwire.com/?release=697562&amp;id=36709&amp;type=1&amp;url=http%3a%2f%2fcode.google.com%2fp%2fopenrtb%2f">http://code.google.com/p/openrtb/</a>. Future OpenRTB initiatives include additional API standards, integration of video ad controls, mobile ad controls, best practices for network management, creative labels, standardized bid request formats and performance reporting.</p>
+<p>Concluded Simmons, &#8220;OpenRTB is the first truly collaborative digital advertising industry consortium that addresses current and future issues for all the players in the value chain by enlisting input from the people who know those issues most intimately.&#8221;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.opendsp.com/openrtb/2010/12/openrtb-announcement/feed</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+<!-- analytics977 --> 

@@ -1,0 +1,46 @@
+function m__main (context, firstRun)
+{
+	//var $menu = context.find('#top_menu');
+	//
+	//$menu.jMenu({
+	//	openClick : false,
+	//	ulWidth : 250,
+	//	TimeBeforeOpening : 50,
+	//	TimeBeforeClosing : 30,
+	//	animatedText : false,
+	//	paddingLeft: 1,
+	//	effects : {
+	//		effectSpeedOpen : 150,
+	//		effectSpeedClose : 150,
+	//		effectTypeOpen : 'slide',
+	//		effectTypeClose : 'slide',
+	//		effectOpen : 'swing',
+	//		effectClose : 'swing'
+	//	}
+	//});
+
+	var $slider = context.find('.slider');
+	//https://github.com/gilbitron/Nivo-Slider
+	$slider.nivoSlider({
+		effect:'random',
+//		animSpeed: 3000,
+		pauseTime: 10000,
+		prevText: '<i class="fa fa-chevron-left"></i>',
+		nextText: '<i class="fa fa-chevron-right"></i>',
+		beforeChange: function(){
+			var total = $slider.data('nivo:vars').totalSlides;
+			var current = $slider.data('nivo:vars').currentSlide + 1;
+
+			if (current >= total)
+				current = 0;
+			else if (current < 0)
+				current = total - 1;
+
+			//d(current, total);
+			var current_id = $slider.find('img:eq('+current+')').data('id');
+
+			$('.slider-caption-inside').hide();
+			$('.slider-caption-inside-' + current_id).show();
+		}
+	});
+}

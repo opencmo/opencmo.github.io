@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>OpenRTB Specification v1.0 | OpenDSP</title>
+
+<meta name="generator" content="WordPress 3.0.3" /> <!-- leave this for stats -->
+
+<link rel="stylesheet" href="http://www.opendsp.com/wp-content/themes/wp_premium/style.css" type="text/css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="OpenDSP RSS Feed" href="http://www.opendsp.com/feed" />
+<link rel="pingback" href="http://www.opendsp.com/xmlrpc.php" />
+<script type="text/javascript" src="http://www.opendsp.com/wp-content/themes/wp_premium/taber.js" language="javascript" ></script>
+<script type="text/javascript" language="javascript" src="http://www.opendsp.com/wp-content/themes/wp_premium/hover.js"></script>
+                        <style type="text/css" media="screen" >
+                                .socialwrap li.icon_text a img, .socialwrap li.iconOnly a img, .followwrap li.icon_text a img, .followwrap li.iconOnly a img{border-width:0 !important;background-color:none;}#follow.right {width:32px;position:fixed; right:0; top:100px;background-color:#878787;padding:10px 0;font-family:impact,charcoal,arial, helvetica,sans-serif;-moz-border-radius-topleft: 5px;-webkit-border-top-left-radius:5px;-moz-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;border:2px solid #fff;border-right-width:0}#follow.right ul {padding:0; margin:0; list-style-type:none !important;font-size:24px;color:black;}
+#follow.right ul li {padding-bottom:10px;list-style-type:none !important;padding-left:4px;padding-right:4px}
+#follow img{border:none;}#follow.right ul li.follow {margin:0 4px;}
+#follow.right ul li.follow img {border-width:0;display:block;overflow:hidden; background:transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/images/impact/follow-right.png) no-repeat -0px 0px;height:79px;width:20px;}
+#follow.right ul li a {display:block;}
+#follow.right ul li.follow span, #follow ul li a span {display:none}.share {margin:0 3px 3px 0;}
+.phat span {display:inline;}
+ul.row li {float:left;list-style-type:none;}
+li.iconOnly a span.head {display:none}
+#follow.left ul.size16 li.follow{margin:0px auto !important}
+li.icon_text a {padding-left:0;margin-right:3px}
+li.text_only a {background-image:none !important;padding-left:0;}
+li.text_only a img {display:none;}
+li.icon_text a span{background-image:none !important;padding-left:0 !important; }
+li.iconOnly a span.head {display:none}
+ul.socialwrap li {margin:0 3px 3px 0 !important;}
+ul.socialwrap li a {text-decoration:none;}ul.row li {float:left;line-height:auto !important;}
+ul.row li a img {padding:0}.size16 li a,.size24 li a,.size32 li a, .size48 li a, .size60 li a {display:block}ul.socialwrap {list-style-type:none !important;margin:0; padding:0;text-indent:0 !important;}
+ul.socialwrap li {list-style-type:none !important;background-image:none;padding:0;list-style-image:none !important;}
+ul.followwrap {list-style-type:none !important;margin:0; padding:0}
+ul.followwrap li {margin-right:3px;margin-bottom:3px;list-style-type:none !important;}
+#follow.right ul.followwrap li, #follow.left ul.followwrap li {margin-right:0px;margin-bottom:0px;}
+.shareinpost {clear:both;padding-top:0px}.shareinpost ul.socialwrap {list-style-type:none !important;margin:0 !important; padding:0 !important}
+.shareinpost ul.socialwrap li {padding-left:0 !important;background-image:none !important;margin-left:0 !important;list-style-type:none !important;text-indent:0 !important}
+.socialwrap li.icon_text a img, .socialwrap li.iconOnly a img{border-width:0}ul.followrap li {list-style-type:none;list-style-image:none !important;}
+div.clean {clear:left;}
+div.display_none {display:none;}
+                        </style>
+                                                <style type="text/css" media="print" >
+                                body {background: white;font-size: 12pt;color:black;}
+ * {background-image:none;}
+ #wrapper, #content {width: auto;margin: 0 5%;padding: 0;border: 0;float: none !important;color: black;background: transparent none;}
+ a { text-decoration : underline; color : #0000ff; }
+#menu, #navigation, #navi, .menu {display:none}
+                        </style>
+                        <link rel="image_src" href="http://www.gravatar.com/avatar/064e0ddeb84e741497247b695940e5d3?default=&amp;size=110.jpg" /> 
+<link rel="alternate" type="application/rss+xml" title="OpenDSP &raquo; OpenRTB Specification v1.0 Comments Feed" href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0/feed" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.opendsp.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.opendsp.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='OpenDSP' href='http://www.opendsp.com' />
+<link rel='start' title='What is a demand-side platform?' href='http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2' />
+<link rel='prev' title='DSP Role In Digital Market' href='http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market' />
+<meta name="generator" content="WordPress 3.0.3" />
+<link rel='shortlink' href='http://www.opendsp.com/?p=120' />
+
+<!-- All in One SEO Pack 1.6.13 by Michael Torbert of Semper Fi Web Design[284,317] -->
+<meta name="keywords" content="demand side platfrom,dsp,real time bidding,rtb,uncategorized" />
+<link rel="canonical" href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0" />
+<!-- /all in one seo pack -->
+
+			<link rel="stylesheet" type="text/css" href="http://www.opendsp.com/index.php?ak_action=aktt_css&v=2.4" />
+			<script type="text/javascript" src="http://www.opendsp.com/index.php?ak_action=aktt_js&v=2.4"></script>
+		</head>
+
+<body>
+
+<div id="header">
+ 	<div id="header-in">
+    
+    <p class="title"><a href="http://www.opendsp.com" title="OpenDSP">OpenDSP</a></p>
+    <p class="description">An Open Community for Demand Side Platform on Online Advertising Industry</p>
+	  
+
+	<div id="nav">
+	<ul>
+		<li class="page_item page-item-2"><a href="http://www.opendsp.com/home.html" title="Home">Home</a></li>
+<li class="page_item page-item-7"><a href="http://www.opendsp.com/demandsideplatform.html" title="Demand Side Platform">Demand Side Platform</a></li>
+<li class="page_item page-item-9"><a href="http://www.opendsp.com/realtimebidding.html" title="Real Time Bidding">Real Time Bidding</a></li>
+<li class="page_item page-item-61"><a href="http://www.opendsp.com/sell-side-platform.html" title="Sell Side Platform">Sell Side Platform</a></li>
+<li class="page_item page-item-11"><a href="http://www.opendsp.com/blo.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-103"><a href="http://www.opendsp.com/contact-2.html" title="Contact">Contact</a></li>
+	</ul>
+	</div>
+	
+	<div class="subscribe">
+	 	<span class="rss"><a href="http://www.opendsp.com/feed"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/rss.gif" alt="" /></a></span> 
+		 
+		 <div class="subscribeform">
+		  <p>Subscribe via Email </p>
+          
+          
+          
+		<!-- get your feedburner ID from google feedburner and replace the two 'YOUR FEEDBURNER ID HERE' with your ID
+        e.g. if your google feedburner ID is http://feeds2.feedburner.com/RBhavesh then, you should write 'RBhavesh' in place of "YOUR FEEDBURNER ID HERE"
+        REMEMBER: you have to replace it twice in this form. Look carefully.
+        -->
+
+          <form action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" 
+          onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=YOUR FEEDBURNER ID HERE', 
+          'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+				<input type="text"  name="email" class="textfield" /></p>
+				<input type="hidden" value="YOUR FEEDBURNER ID HERE" name="uri"/>
+				<input type="hidden" name="loc" value="en_US"/>
+				<input type="image" value="" src="http://www.opendsp.com/wp-content/themes/wp_premium/images/blank.png" class="sbutton" />
+			</form>
+        
+ 		 </div>
+	</div>
+ 
+	</div>
+
+</div>
+<div class="container-top"></div>
+<div id="container">
+ <!--header.php end-->
+<div id="content">
+		
+		
+	<!--post title-->
+	<h1 id="post-120"><a href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0" rel="bookmark" title="Permanent Link: OpenRTB Specification v1.0">OpenRTB Specification v1.0</a></h1>
+	
+     <div class="post-meta-top">
+	<div class="date">Posted at January 13, 2011 </div>
+ 	</div> <!-- post-meta-top #end -->
+			
+ 	
+	<!--content with more link-->
+	<div style="float:right;padding: 0 0 10px 10px" class="interactive_right"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0&amp;text=OpenRTB Specification v1.0&amp;count=vertical&amp;lang=  " style="width:60px; height:65px;"></iframe><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0&amp;layout=box_count&amp;show_faces=false&amp;width=60&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:60px; height:65px;" allowTransparency="true"></iframe></div><h1>Specific Benefits for SSPs and DSPs</h1>
+<p>The first goal of the OpenRTB working group is to standardize a protocol to remove the labor intensive and error prone process in the RTB ecosystem: Managing publisher and advertiser blocklists. The objective of OpenRTB is to minimize these impediments, so that the RTB ecosystem, made up of DSPs (Demand-Side Platforms) and SSPs (Sell-Side Platforms), can grow more quickly and ensure a higher quality of service to advertisers and publishers.</p>
+<p>Specifically, we aim to address the needs of publishers to block certain advertisers or creative types, and the needs of advertisers to block certain publishers or content types in the RTB environment. This proposal includes an off-lineoffline (batch) protocol as well as the definition for a standard set of features in a real-time bid request.</p>
+<h2><a name="Benefits_for_SSPs:"></a>Benefits for SSPs:</h2>
+<ol>
+<li><strong>Higher CPMs</strong>: If SSPs provide block lists to their DSP partners in an offline, batch manner, the DSP can incorporate filters in their bidding functionality to not bid on inventory they cannot win. This will result in a higher percentage of valid bids per impression. Statistically, this will result in fewer bids to process for bid request and higher CPMs per impression for the publisher.</li>
+<li><strong>Reduce Risk</strong>: Better and more Uniform Enforcement of Publisher Restrictions: If DSPs and SSPs have a unified taxonomy for ad blocking, it will make it easier for DSPs to strictly follow publisher rules when bidding. This will reduce the risk of potential issues with publishers due to human error.</li>
+<li><strong>Increased Revenue</strong> through easier Integration with DSPs: Reducing the manual work to translate blocklists from a SSP’s format to a DSP’s format will reduce the time to launch new campaigns. This will result in easier integration for DSPs, more competitive bidding, and higher revenue for the SSP.</li>
+</ol>
+<h2><a name="Benefits_for_DSPs:"></a>Benefits for DSPs:</h2>
+<ol>
+<li><strong>Lower costs</strong> through more efficient Ad Delivery: Using pre-bid-filters, DSPs can stop bidding where they can’t possibly win due to publisher or creative restrictions. This will reduce DSP costs, since they will be able increase their ratio of valid bids per impression.</li>
+<li><strong>Reduce risk</strong> through better enforcement of advertiser and publisher restrictions: If DSPs and SSPs have a unified taxonomy for ad blocking, it is easier for DSPs to strictly follow advertiser and publisher rules when bidding. This will reduce potential issues with advertisers and SSPs due to human error.</li>
+<li><strong>Greater reach</strong> through easier integration with SSPs: Easier on boarding of new campaigns and creatives reduces the tedious manual work required to translate blocklists from an SSP’s format to a DSP’s format. Using OpenRTB will result in lower costs to onboard a new SSP, and will result in broader reach for the DSP.</li>
+</ol>
+<h1><a name="Needs_of_Publishers_and_Advertisers"></a>Needs of Publishers and Advertisers</h1>
+<h2><a name="Publisher-Side_(SSP)_Needs"></a>Publisher-Side (SSP) Needs</h2>
+<p>Publishers want to control the quality of content on their site. This includes controlling the types of brands or industries that show up in advertisements on publisher pages. Reasons for blocking creatives may include channel conflict or content conflicting with the publisher’s mission.</p>
+<p><strong>Publisher Quality Management Needs:</strong></p>
+<ol>
+<li><strong>Block Advertiser by Landing Page URL</strong> – for example: &#8220;block <a rel="nofollow" href="http://www.carbrand.com/">http://www.carbrand.com</a>&#8220;</li>
+<li><strong>Block Creatives by Attributes of the Creative</strong> – for example: &#8220;block ads that have audio, have video, are &#8216;shaky/flashy&#8217;&#8221;</li>
+<li><strong>Block Advertisers by Industry</strong> – for example, &#8220;block automotive, block credit cards.&#8221;</li>
+</ol>
+<p>Note that a publisher can handling blocking of industries using internal means of matching up advertiser landing pages to industries. A methodology for handling case P3 is not included in the OpenRTB spec, since it can be achieved by filtering on sell-side supplied contextualization, or buy-size supplied contextualization of publisher URLs.</p>
+<h2><a name="Advertiser-Side_(DSP)_Needs:"></a>Advertiser-Side (DSP) Needs:</h2>
+<p>Advertisers are concerned about safety of their brand, specifically, placement of ads near content that is not appropriate for their message.</p>
+<p><strong>Specific Quality Management Needs of Advertisers:</strong></p>
+<ol>
+<li><strong>Block or Specifically Allow Publishers by publisher URL</strong> – for example: &#8220;block <a rel="nofollow" href="http://www.badcontent.org/">http://www.badcontent.org</a>, allow <a rel="nofollow" href="http://www.safecontent.com/">http://www.safecontent.com</a>&#8220;</li>
+<li><strong>Block or Specifically Allow Publishers by the Exchange’s PublisherID and Site ID</strong> – for example: &#8220;block SSP-Pub-5, SSP-Site-6&#8243;</li>
+<li><strong>Block or Specifically Allow Content Channels/Verticals/Categories</strong> – for example: “block Sports, allow Financial”</li>
+<li><strong>Block Publishers by Non-Standard Content Flags, or Audience Ratings</strong> – for example: “block content not suitable for children.”</li>
+<li><strong>Block or Specifically Allow Ads to be placed on pages with user generated content (UGC)</strong> – for example: moderated UGC is acceptable, and un-moderated is not allowed.</li>
+</ol>
+<h1><a name="High-Level_Implementation_Concept:_Offline_Batch_&amp;_Real-Time"></a>High-Level Implementation Concept: Offline Batch &amp; Real-Time</h1>
+<h2><a name="Incremental_Approach"></a>Incremental Approach</h2>
+<p>To make a transition to OpenRTB easier for a DSP or SSP, the design of this protocol is intentionally specified in a way that it can be implemented partially or completely by either party. By design, DSPs and SSPs can roll out pieces of this protocol as needed or desired. OpenRTB provides a framework these kinds of features to be rolled out over time in a way that will be consistent with existing solutions in the industry.</p>
+<p>There are two parts of this protocol: (1) Offline Batch Sync, as well as (2) Real-Time Filtering. In general, offline synchronization is used for managing data that has 100s or 1000s of rows that need to be synced and coordinated. Real-Time Filtering is used for the opposite case, where there are 1000s of things, and relatively few filtering criteria. The pilot implementation group has found that due to how each of our internal systems is designed, off-line synchronization may work better in some cases, and on-line real&#8211;time filtering may work better in others. OpenRTB provides for flexibility in how restrictions are enforced, as long as the DSPs and SSPs use at least one of the methods.</p>
+<p>The specific cases are described in the following sections.</p>
+<h2><a name="Offline_Batch_Synchronization"></a>Offline Batch Synchronization</h2>
+<p><img src="http://www.adroitinteractive.com/clients/openrtb/image_4_2.gif" alt="" /></p>
+<p>In the case of OpenRTB, bidders typically have lists of 100s of advertisers, each with at least one, but the possibility of multiple, names and landing pages. Each advertiser of these may or may not have been blocked by publishers on the SSP side. The offline batch synchronization method provides a method for a DSP to download publisher restrictions during campaign setup. The figure above shows a simple request-response interface between the DSP and SSP. If blocklists change over time due to changes in publisher preferences, a DSP can receive this information by polling the SSP’s synchronization service on a periodic basis (for example, hourly).</p>
+<p>In the figure above, “B1” is a batch request with a list of current advertisers including landing page URLs and full-text advertiser names (for publisher reference). The SSP will query its blocklist database, and return the message “B2”, a response that includes a mapping of each landing page URL to a list of Blocked publisher IDs and Site IDs.</p>
+<p>Under the OpenRTB protocol, participating SSPs will maintain a simple, standard web service to facilitate these synchronization calls.</p>
+<p>Note that this method does not preclude the SSP from running their own blocklist database with their own definitions and taxonomies. However, if one is already set up, the SSP will need to translate these blocklist definitions into the universal format. This allows a SSP to provide maximum flexibility and features to a publisher, while still providing a consistent interface to DSPs.</p>
+<h1><a name="Real-Time_Blocking_Protocol"></a>Real-Time Blocking Protocol</h1>
+<p><img src="http://www.adroitinteractive.com/clients/openrtb/image_4_3.gif" alt="" /></p>
+<p>In the case of creative attribute and content category blocking, there is a limited list of attributes, so it may make more computational sense to process these with each real-time bid request. Creative tagging is done ahead of time by DSPs.</p>
+<p>Given a standardized list of creative attributes that are (yes/no) questions, DSPs can tag each creative with quality markers indicating if a creative falls into a category. The SSP will allow publishers to pre-set what’s allowed and not -allowed on their site. As a part of the real-time bid request (message RT1), the SSP will include the blocked creative attribute types. Message RT1 will also include the Publisher ID and Site ID for real-time advertiser blocking.</p>
+<p>The bidder responds in the normal fashion with a bid response (message RT2). If a bid is submitted the DSP will only send advertisers and creatives that are eligible for the specified publisher ID, site ID, and allowed creative attributes. Since data may be out of date or not yet synced using the hourly batch protocol, it’s suggested that the SSP double check the contents of the response to make sure the DSP is in compliance. Message RT2 also includes a DSP unique ID identifying the creative, so that any issues can be resolved quickly.</p>
+<p>Optionally, some SSPs may choose to provide impression-by-impression or batch reports (message RT3) noting any filtered advertisers or creatives back to the DSP. Message RT3 is not specified in this release of the OpenRTB protocol.</p>
+<p>Optionally, SSPs may provide content channel information about each publisher URL. The recommendation is to use the standard taxonomy presented in the IAB network and exchanges guidelines (see: <a rel="nofollow" href="http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf">http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf</a>). A list of these categories as of June 2010 is provided below.</p>
+<h1><a name="Offline/Batch_Synchronization_Specification"></a>Offline/Batch Synchronization Specification</h1>
+<p>This section contains specifications for three different operations: <strong>Message Verification (Section 5.1) </strong>Advertiser-Centric Blocklist synchronization (5.2) <strong>Publisher-Centric Blocklist synchronization (5.3)</strong></p>
+<h2><a name="Batch_Synchronization_Message_Verification"></a>Batch Synchronization Message Verification</h2>
+<p>Verification of the message content is handled inline with each request. Every request will contain an identification object. The identifier&#8217;s token is constructed by computing the MD5 checksum of the JSON request message, less the token attribute, concatenated with a shared secret. The receiver of the request must remove the token from the request and generate an MD5 checksum with the same shared secret to confirm authenticity. The shared secret may take any form (i.e. text string or key encryption) and is communicated between the parties outside of this protocol.</p>
+<p>This specification does not preclude methods and/or procedures that an internal technical operations team will employ to secure this solution; for example ip address filtering and SSL encryption.</p>
+<p><strong>Identification Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>organization</td>
+<td>required</td>
+<td>string</td>
+<td>The identifier used by the receiver to identify the requesting organization.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>required</td>
+<td>long</td>
+<td>The number of milliseconds since EPOC this request was made.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>required</td>
+<td>string</td>
+<td>The associated MD5 token used to confirm the authenticity of and uniquely identify the request.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request:</p>
+<pre>{
+  “identification”: {
+    "organization": "The DSP",
+    "timestamp": 1289405763341,
+    "token": "05876f434f5bf2d7b8c1e3de67135c6a"
+  },
+...
+(rest of message)
+,,,
+}</pre>
+<p>All request responses include the identification object in addition to the status object. The status object contains the necessary error messages and status for the associated request. The token of the identification object is constructed in the same manner as described above.</p>
+<p><strong>Status Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>requestToken</td>
+<td>required</td>
+<td>string</td>
+<td>The identifier associated with the original request.</td>
+</tr>
+<tr>
+<td>statusCode</td>
+<td>required</td>
+<td>int</td>
+<td>An integral status code associated with the request. <strong>0</strong> indicates no error. <strong>1</strong> indicates authentication error. <strong>2</strong> indicates a duplicate transaction. <strong>3</strong> indicates other error (see statusMessage).</td>
+</tr>
+<tr>
+<td>statusMessage</td>
+<td>required</td>
+<td>string</td>
+<td>For status codes of 0, ”success” is returned; otherwise and error message is present describing the issue with validation (for example, “incorrect password”, or “user not found”)</td>
+</tr>
+</tbody>
+</table>
+<p>Example Response:</p>
+<pre>{
+  “identification”: {
+    "organization": "The SSP",
+    "timestamp": 1289420873341,
+    "token": "5ff9c3f8511a79a3edb8b153a18002a3"
+  },
+  “status”: {
+    "requestToken": "05876f434f5bf2d7b8c1e3de67135c6a",
+    "statusCode": 0,
+    "statusMessage": "success"
+  },
+...
+(rest of message)
+...
+}</pre>
+<h2><a name="Advertiser-Centric_Offline_Synchronization_Service"></a>Advertiser-Centric Offline Synchronization Service</h2>
+<p>The advertiser-centric offline synchronization service allows a DSP to automatically pull and update all publisher blocklist data from the SSP and set up pre-filters in their bidding system. It is expected that a DSP will periodically poll for updates from the SSP, so that any publisher restrictions can be automatically propagated to buyers.</p>
+<h3><a name="Advertiser-Centric_Request_Parameters"></a>Advertiser-Centric Request Parameters</h3>
+<p><strong>Advertiser Blocklist Synchronization Request</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>identification</td>
+<td>required</td>
+<td>object</td>
+<td>See “Identification Object” definition.</td>
+</tr>
+<tr>
+<td>advertisers</td>
+<td>required</td>
+<td>list of object</td>
+<td>One or more “Advertiser Object” definitions, specified in the table below.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advertisers Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>landingPageTLD</td>
+<td>required</td>
+<td>string</td>
+<td>The Advertiser’s landing page url as a top-level domain (TLD). Advertiser landing pages are expected to be a a generic landing page for the advertiser, not (for example) a redirect url through an ad server. Example: “carbrand.com”. Should be in lower case letters. This field is used as a unique ID for the advertiser between the DSP and SSP.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>optional</td>
+<td>string</td>
+<td>The advertiser’s name. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+<tr>
+<td>sinceThisTimestamp</td>
+<td>optional</td>
+<td>longint</td>
+<td>If specified, the API will only return changes since this POSIX time stamp. By default, the API will return all results.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Request:</p>
+<pre>{
+  "identification": { ... },
+  "advertisers": [
+    {  
+        "landingPageTLD": "acmeluxuryfurniture.com",
+        "name": "Acme Luxury Furniture",
+    },
+    {
+        "landingPageTLD": "luxurycarbrand.com",
+        "name": "Luxury Car Brand",
+        "sinceThisTimestamp":  1286754444
+    }
+}</pre>
+<h3><a name="Advertiser-Centric_Response_Parameters"></a>Advertiser-Centric Response Parameters</h3>
+<p><strong>Advertiser Blocklist Synchronization Response</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>identification</td>
+<td>required</td>
+<td>object</td>
+<td>See “Identification Object” description.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>required</td>
+<td>object</td>
+<td>See “Status Object” description. No additional error codes are specified as a part of this response.</td>
+</tr>
+<tr>
+<td>advertisers</td>
+<td>required</td>
+<td>list of objects</td>
+<td>One or more “Advertiser Object” definitions, specified in the table below.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advertiser Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>landingPageTLD</td>
+<td>required</td>
+<td>string</td>
+<td>The advertiser’s landing page url as a top-level domain (TLD)., The value specified here should be equivalent to the one specified in the request.</td>
+</tr>
+<tr>
+<td>blocklist</td>
+<td>optional</td>
+<td>list of object</td>
+<td>One or more “Blocklist Object” definitions, specified in the table below. If left blank, there is no block list for this advertiser.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Blocklist Object</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>Field</strong></td>
+<td><strong>Scope</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>publisherID</td>
+<td>required</td>
+<td>string</td>
+<td>SSP’s unique ID for thea publisher. There are no restrictions imposed on the content of this value beyond the specified datatype (i.e. the value may be alphanumeric).</td>
+</tr>
+<tr>
+<td>publisherName</td>
+<td>optional</td>
+<td>string</td>
+<td>Human readable name of the publisher. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+<tr>
+<td>siteID</td>
+<td>required if site level blocking is used</td>
+<td>string</td>
+<td>If blocking is at the site level, then specify the SSP’s site ID. There are no restrictions imposed on the content of this value beyond the specified datatype (i.e. the value may be alphanumeric). If this field is blank, then all sites under a publisher are blocked.</td>
+</tr>
+<tr>
+<td>siteName</td>
+<td>optional</td>
+<td>string</td>
+<td>Human readable name of the site ID, if site level blocking is used. This field is used for informational purposes only and is not expected to be unique.</td>
+</tr>
+</tbody>
+</table>
+<p>Example Response:</p>
+<pre>{
+  "identification": { ... },
+  "status": 0{ ... },
+  "advertiser": [
+    {
+          "landingPageTLD": "acmeluxuryfurniture.com",
+          "blocklList": [
+                {
+                  "publisherID": "3422",
+                  "publisherName": "Joe's News"
+                },
+                {
+                  "publisherID": "2342",
+                  "publisherName": "Big Portal",
+                  "siteId": "1",
+                  "siteName": "Finance section"
+                },
+                {
+                  "publisherID": "23423",
+                  "publisherName": "Smith Blog",
+                  "siteID": "223",
+                  "siteId": "Technology Section"
+                },
+                {
+                  "publisherID": "423",
+                  "publisherName": "Smith Blog",
+                  "siteId": "23",
+                  "siteName": "Cars Section"
+                },
+                {
+                  "publisherID": "34223",
+                  "publisherName": "Jones Blog"
+                }
+          ]
+    },
+    {
+          "landingPageTLD": "luxurycarbrand.com",
+          "blockList": [
+                {
+                  "publisherID": "3422",
+                  "publisherName": "Joe's News"
+                }
+            ]
+     }  
+  ]
+}</pre>
+<h1><a name="Real-Time_Blocklist_Spec"></a>Real-Time Blocklist Spec</h1>
+<h2><a name="Real-Time_Blocking_of_Creatives_using_Universal_Creative_Attribu"></a>Real-Time Blocking of Creatives using Universal Creative Attributes</h2>
+<p>This system will allow enforcement of publisher-mandated creative attribute restrictions in real time, same way that advertiser blocks are currently enforced.</p>
+<ul>
+<li>SSP sends to DSP list of allowed creative types on each bid request</li>
+<li>DSP sends to SSP list of creative types that apply to the creative on each bid</li>
+</ul>
+<h3><a name="(From_SSP_to_DSP)_List_of_Allowed_Creative_Attributes"></a>(From SSP to DSP) List of Allowed Creative Attributes</h3>
+<p>DSPs will tag creatives with the following universal list of creative attributes. SSPs will send a list indicating which attributes are allowed in real-time with each bid request. The choice of how to implement sending this list of tags is left up to the SSP; however, the attribute lists must use the standard IDs specified below.</p>
+<p><strong>Universal Creative Attributes and IDs:</strong></p>
+<table>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>Creative Attribute</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Standard Ad</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Audio Ad (Auto Play)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Audio Ad (User Initiated)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Expandable (Automatic)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Expandable (User Initiated &#8211; Click)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Expandable (User Initiated &#8211; Rollover)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>in Banner Video Ad (Auto Play)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>in Banner Video Ad (User Initiated)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pop (such as Over, Under, or upon Exit)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Provocative or Suggestive Image Ads</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Shaky/Flashing/Flickering Ad, Extreme Animation, or Smileys</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Survey Ads (such as Dynamic Logic, Insight Express, Vizu, etc.)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Text Only Ads</td>
+</tr>
+<tr>
+<td>14</td>
+<td>User Interactive (such as embedded games)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Windows Dialog Ad or Alert Style Ad</td>
+</tr>
+</tbody>
+</table>
+<p>SSPs will send a list of blocked attributes in their real-time bid request to each DSP. The exact format of this message will depend on each SSP’s real-time bidding protocol. One possible encoding is an integer or hex string representing a bit field that contains each allowed creative attribute.</p>
+<p>In real-time, with each bid request, the DSP will eliminate and creatives that do not satisfy the creative attribute restrictions. This allows a publisher to manage very specific tag-level restrictions on their site. For example, a certain ad tag may be the one designated for in banner video ads.</p>
+<p>A DSP may implement creative-attribute filtering in real-time, or through pre-filters using the publisher-centric synchronization service.</p>
+<h3><a name="(From_DSP_to_SSP)_Real-Time_Creative_Attribute"></a>(From DSP to SSP) Real-Time Creative Attribute</h3>
+<p>To allow real-time publisher-side enforcement of creative attribute compliance the DSP must send with each bid request the list of creative attributes that apply. If none of the special types apply, the &#8220;Standard Ad&#8221; creative type should be used.</p>
+<p>The SSP will then be able to do real-time enforcement of creative types for each bid, which will work the same way as it does for blocklist enforcement.</p>
+<p>The implementation is dependent on each SSP&#8217;s real-time bidding protocol. One possible encoding is an integer or hex string representing a bit field that contains all creative attributes that apply to the creative.</p>
+<h2><a name="(From_DSP_to_SSP)_Real-Time_Creative_ID"></a>(From DSP to SSP) Real-Time Creative ID</h2>
+<p>The DSP will include a Creative ID in its bid response. This is included so that the SSP can quickly flag any problematic creative for review or blocking. The creative ID will be formatted as a string.</p>
+<h2><a name="(From_SSP_to_DSP)_Real-Time_Publisher_ID_and_Site_ID"></a>(From SSP to DSP) Real-Time Publisher ID and Site ID</h2>
+<p>To complete the pre-filtering of advertisers for each impression, SSPs should provide the Publisher ID and Site ID for impression with each real-time bid-request. These are assumed to be strings, in the same format as was provided by the SSP in the offline / batch sync.</p>
+<h2><a name="Real-Time_Blocking_of_Content_Categories"></a>Real-Time Blocking of Content Categories</h2>
+<p>The OpenRTB protocol group suggests the use of the IAB Networks and Exchanges Taxonomy for providing information about content categories. Details of the guidelines can be found here: <a rel="nofollow" href="http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf">http://www.iab.net/media/file/NE-QA-Guidelines-Final-Release-0610.pdf</a></p>
+<p>For Reference, tier 1 categories are listed here. IAB25 and IAB26 represent “non-standard content” and “illegal content”, as listed in the networks and exchanges guidelines.</p>
+<table>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>IAB Name</strong></td>
+</tr>
+<tr>
+<td>IAB1</td>
+<td>Arts &amp; Entertainment</td>
+</tr>
+<tr>
+<td>IAB2</td>
+<td>Automotive</td>
+</tr>
+<tr>
+<td>IAB3</td>
+<td>Business</td>
+</tr>
+<tr>
+<td>IAB4</td>
+<td>Careers</td>
+</tr>
+<tr>
+<td>IAB5</td>
+<td>Education</td>
+</tr>
+<tr>
+<td>IAB6</td>
+<td>Family &amp; Parenting</td>
+</tr>
+<tr>
+<td>IAB7</td>
+<td>Health &amp; Fitness</td>
+</tr>
+<tr>
+<td>IAB8</td>
+<td>Food &amp; Drink</td>
+</tr>
+<tr>
+<td>IAB9</td>
+<td>Hobbies &amp; Interests</td>
+</tr>
+<tr>
+<td>IAB10</td>
+<td>Home &amp; Garden</td>
+</tr>
+<tr>
+<td>IAB11</td>
+<td>Law Gov&#8217;t &amp; Politics</td>
+</tr>
+<tr>
+<td>IAB12</td>
+<td>News</td>
+</tr>
+<tr>
+<td>IAB13</td>
+<td>Personal Finance</td>
+</tr>
+<tr>
+<td>IAB14</td>
+<td>Society</td>
+</tr>
+<tr>
+<td>IAB15</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>IAB16</td>
+<td>Pets</td>
+</tr>
+<tr>
+<td>IAB17</td>
+<td>Sports</td>
+</tr>
+<tr>
+<td>IAB18</td>
+<td>Style &amp; Fashion</td>
+</tr>
+<tr>
+<td>IAB19</td>
+<td>Technology &amp; Computing</td>
+</tr>
+<tr>
+<td>IAB20</td>
+<td>Travel</td>
+</tr>
+<tr>
+<td>IAB21</td>
+<td>Real Estate</td>
+</tr>
+<tr>
+<td>IAB22</td>
+<td>Shopping</td>
+</tr>
+<tr>
+<td>IAB23</td>
+<td>Religion and Spirituality</td>
+</tr>
+<tr>
+<td>IAB24</td>
+<td>Uncategorized</td>
+</tr>
+<tr>
+<td>IAB25</td>
+<td>Non Standard Content</td>
+</tr>
+<tr>
+<td>IAB26</td>
+<td>Illegal Content</td>
+</tr>
+</tbody>
+</table>
+<h2><a name="Real-Time_Reporting_of_UGC_Code_in_Bid_Request"></a>Real-Time Reporting of UGC Code in Bid Request</h2>
+<p>Many advertisers require that DSPs run on inventory that does not include user-generated content. SSPs should report UGC status of the publisher, site, or placement with each bid request with the following format:</p>
+<table>
+<tbody>
+<tr>
+<td><strong>UGC Code</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>0</td>
+<td>No user-generated content</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Moderated User-Generated Content</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Unmoderated User-Generated Content</td>
+</tr>
+</tbody>
+</table>
+<p>If this field is left blank, it can be assumed that UGC status for that publisher is unknown.</p>
+<hr />
+<h1><a name="Work_in_Progress"></a>Work in Progress</h1>
+<p>This section contains a list of future topics, which will not be included in the initial release of OpenRTB</p>
+<h2><a name="(Optional)_Publisher-Centric_Offline_Synchronization_Service"></a>(Optional) Publisher-Centric Offline Synchronization Service</h2>
+<p>This section discusses a method of offline synchronization for various publisher preferences. Publisher preferences contain inclusion and exclusion lists. Publisher preference lists could be: URL, Creative Attribute, Creative Category RichMedia Vendors, Tracking/Pixel Vendors.</p>
+<p>The Publisher Centric Synchronization Service provides a method for ad operation teams to answer queries for pre-filtering that may not be covered by the advertiser-centric method. For example: “tell me all of the publishers that accept creatives with audio” or “tell me all of the publishers that accept expandables from RichMedia Vendor X”.</p>
+<p>In addition, depending on how a DSP has set up it’s pre-filtering; this synchronization method may be more convenient.</p>
+<h2><a name="(From_SSP_to_the_DSP)_Real-Time_Technology_Flags"></a>(From SSP to the DSP) Real-Time Technology Flags</h2>
+<p>In addition to the creative attributes list, SSPs could send real-time flags indicating allowed technology vendors and allowed creative technologies.</p>
+<h2><a name="Unified_Handling_of_Private_/_Prioritized_Seats"></a>Unified Handling of Private / Prioritized Seats<a href="http://code.google.com/p/openrtb/wiki/Specs#Unified_Handling_of_Private_/_Prioritized_Seats">¶</a></h2>
+<p><em>This section of is an initial version laying out basic principles. It should not be considered a complete standard.</em></p>
+<p>Private seats and prioritized bidding are two names for a method for a sending a bid request which may be able to receive multiple bid responses serving different parties, which may have different billing relationships with a publisher. Two key principles are laid out here:</p>
+<ol>
+<li>In the real-time bid request, the SSP should include a flag specifying if seats are required. If no seat is required, then DSP can assume no special restrictions are imposed (bidding follows standard rules)</li>
+<li>If seats are required for bidding, a list of potential seats should be presented by the SSP in the bid request.</li>
+<li>If multiple responses are allowed, the maximum number of potential responses per bid response should be given in the bid request.</li>
+<li>In the bid response, the DSP should provide the seat ID for each bid.</li>
+</ol>
+<p style="text-align: right;">Source:OpenRTB.info</p>
+<div class='shareinpost'><ul class="socialwrap row"><li class="iconOnly share">Share:</li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://delicious.com/post?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0&amp;title=OpenRTB+Specification+v1.0" title="Bookmark this post : OpenRTB Specification v1.0 on Delicious" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-198px 0px" class="image-32" width="32" alt="delicious"/> <span class="head">Bookmark on Delicious</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://digg.com/submit?url=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0&amp;title=OpenRTB+Specification+v1.0&amp;bodytext=Specific+Benefits+for+SSPs+and+DSPs%0D%0AThe+first+goal+of+the+OpenRTB+working+group+is+to+standardize+a+protocol+to+remove+the+labor+intensive+and+error+prone+process+in+the+RTB+ecosystem%3A+Managing+publisher+and+advertiser+blocklists.+The+objective+of+OpenRTB+is+to+minimize+these+impediments%2C+so+that+the+RTB+ecosystem%2C+ma" title="Digg this post : OpenRTB Specification v1.0" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-264px 0px" class="image-32" width="32" alt="digg"/> <span class="head">Digg this post</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0&amp;t=OpenRTB+Specification+v1.0" title="Recommend this post : OpenRTB Specification v1.0 on Facebook" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-363px 0px" class="image-32" width="32" alt="facebook"/> <span class="head">Recommend on Facebook</span></a></li><li class="iconOnly"><a rel="nofollow" target="_blank" href="http://twitter.com/home/?status=OpenRTB+Specification+v1.0+-+http%3A%2F%2Fwww.opendsp.com%2Funcategorized%2F2011%2F01%2Fopenrtb-specification-v1-0" title="http://twitter.com/OPENDSP" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-1749px 0px" class="image-32"  width="32"  alt="twitter"/> <span class="head">twitter</span></a></li><li class="iconOnly"><a rel="_self" href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0/feed" title="Follow this post : OpenRTB Specification v1.0 comments"><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="32"  width="32" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/32/sprite-32.png) no-repeat;padding:0;margin:0;height:32px;width:32px;background-position:-1452px 0px" class="image-32"  alt="rss" /> <span class="head">Subscribe to the comments on this post</span></a></li></ul><div class="clean"></div> </div>    
+     <!--Rateing-->
+        <!--Rateing end-->
+	
+	<!--post paging-->
+	
+	<!--Post Meta-->
+	<div class="post-bottom">
+	 <span class="cat"><a href="http://www.opendsp.com/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a></span>
+     
+     <ul class="social">
+    <li class="i_digg" ><a href="http://digg.com/submit?phase=2&amp;url=xURIx">  Digg</a></li>            
+        <li class="i_stumb" ><a href="http://www.stumbleupon.com/submit?url=xURIx&amp;title=xTITLEx">Stumbleupon   </a></li>       
+        <li class="i_del" ><a href="http://del.icio.us/post?url=xURIx;title=xTITLEx">Del.icio.us</a></li>          
+        <li class="i_reddit" ><a href="http://reddit.com/submit?url=xURIx;title=xTITLEx">Reddit </a></li>           
+        <li class="i_technorati" ><a href="http://technorati.com/faves?add=http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0" title="Add to Technorati Favorites"> Technorati</a></li> 
+    </ul> <!-- social bookmark section-->
+	
+	</div> <!-- post bottom #end -->
+    
+	
+	<p><strong>If you enjoyed this post, please consider to <a href="#comments">leave a comment</a> or <a href="http://www.opendsp.com/feed">subscribe to the feed</a> and get future articles delivered to your feed reader.
+    </strong></p>	
+		
+	<!--include comments template-->
+	
+<!-- You can start editing here. -->
+
+	
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<div id="respond">
+
+<h3>Leave Comment</h3>
+
+<div class="cancel-comment-reply">
+	<a rel="nofollow" id="cancel-comment-reply-link" href="/uncategorized/2011/01/openrtb-specification-v1-0#respond" style="display:none;">Click here to cancel reply.</a></div>
+
+
+<form action="http://www.opendsp.com/wp-comments-post.php" method="post" id="commentform">
+    <p>
+    <input type="text" name="author" id="author" class="textarea" value="" size="28" tabindex="1" />
+    <label for="author">
+    Name    </label>
+    (required)  </p>
+  <p>
+    <input type="text" name="email" id="email" value="" size="28" tabindex="2" class="textarea" />
+    <label for="email">
+    E-mail    </label>
+    (required)  </p>
+  <p>
+    <input type="text" name="url" id="url" value="" size="28" tabindex="3" class="textarea" />
+    <label for="url">
+    <acronym title="Uniform Resource Identifier">URI</acronym>    </label>
+  </p>
+    <p>
+    <label for="comment"><strong>Your Comment</strong></label>
+    <br />
+    <textarea name="comment" id="comment" cols="60" rows="10" tabindex="4" class="textarea"></textarea>
+  </p>
+  <p>
+    <input name="submit" id="submit" type="submit" tabindex="5" value="submit" class="Cbutton" />
+    <input type="hidden" name="comment_post_ID" value="120" />
+    <input type="hidden" name="redirect_to" value="/uncategorized/2011/01/openrtb-specification-v1-0" />
+  </p>
+  </form>
+</div>
+
+
+	
+	<!--do not delete-->
+		
+	
+<!--single.php end-->
+</div>
+
+<!--include sidebar-->
+<div id="sidebar"  >  
+  <div class="about">
+    <h3>About Site</h3>
+     <img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/hands.jpg" alt="" class="imgleft"  />
+    <p> <strong>OpenDSP</strong> <br />
+   -DSP Online Advertising  </p>
+    <p> This is the site you can get more and more information about DSP and Related.</p>
+    <p>Hello Viewers,Actually OpenDSP looking to provide Demand Side Platform(DSP),the system that connects to multiple ad exchanges and other media suppliers, accessed by a single user interface  </p>  </div>
+  <!-- about me #end -->
+  
+  
+  <div id="xsnazzy">
+    <!--Search Box Start -->
+    <b class="xtop"><b class="xb1"></b><b class="xb2"></b><b class="xb3"></b><b class="xb4"></b></b>
+    <div class="xboxcontent">
+    
+    
+      <div class="tabber">
+        <div class="tabbertab">
+          <h2>Search</h2>
+          <div class="searchform">
+<form method="get" id="searchform" action="http://www.opendsp.com">
+<input type="text" value="Search on this blog..." name="s" class="s" onfocus="if (this.value == 'Search on this blog...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search on this blog...';}"/>
+<input type="image" class="button" src="http://www.opendsp.com/wp-content/themes/wp_premium/images/none.gif" alt="Submit button" />
+</form>
+</div>
+        </div>
+        
+        <div class="tabbertab">
+          <h2>Archives</h2>
+          <ul class="tablist">
+            	<li><a href='http://www.opendsp.com/2011/01' title='January 2011'>January 2011</a></li>
+	<li><a href='http://www.opendsp.com/2010/12' title='December 2010'>December 2010</a></li>
+          </ul>
+        </div>
+        
+        
+        <div class="tabbertab">
+          <h2>Categories</h2>
+          <ul class="tablist">
+            	<li class="cat-item cat-item-11"><a href="http://www.opendsp.com/opendsp/" title="View all posts filed under OpenDSP">OpenDSP</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.opendsp.com/openrtb/" title="View all posts filed under OpenRTB">OpenRTB</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.opendsp.com/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+          </ul>
+        </div>
+      </div>
+      <!--Tabber end -->
+      
+      
+    </div>
+    <b class="xbottom"><b class="xb4"></b><b class="xb3"></b><b class="xb2"></b><b class="xb1"></b></b> </div>
+  <!--Search box end -->
+  
+  
+  
+  <div class="advertise">
+    <a href="http://premiumthemes.net" title="PremiumThemes.net"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb1.jpg" alt="Premium Wordpress Themes" /></a>
+<a href="http://cssace.com/wp-premium-theme"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb2.gif" alt="WP Premium Theme" /></a>
+<a href="http://premiumthemes.net" title="PremiumThemes.net"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb3.gif" alt="Best Wordpress Premium Themes" /></a>
+<a href="https://www.e-junkie.com/ecom/gb.php?cl=12108&c=ib&aff=36280"><img src="http://www.opendsp.com/wp-content/themes/wp_premium/images/thumb4.gif" alt="ultimate theme on the planet"  /></a>  </div><!-- advt #end -->
+  
+  
+  <div id="sidebarwrap" class="clearfix">
+  
+    <!--Recent Post  Start -->
+    <div id="pxsnazzy"> <b class="pxtop"><b class="pxb1"></b><b class="pxb2"></b><b class="pxb3"></b><b class="pxb4"></b></b>
+      <div class="pxboxcontent">
+      
+        <div class="popular">
+          <ul>
+            <li>
+              <h2>Recent Posts</h2>
+              <ul >
+                                <li><a href="http://www.opendsp.com/uncategorized/2011/01/openrtb-specification-v1-0">
+                  OpenRTB Specification v1.0                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/dsp-role-in-digital-market">
+                  DSP Role In Digital Market                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/digital-media-with-dspdsp-ar">
+                  Digital Media With DSP?
+DSP ar&#8230;                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/ability-to-manage-media-with-dsp">
+                  Ability To Manage Digital Media With DSP                  </a></li>
+                                <li><a href="http://www.opendsp.com/uncategorized/2010/12/dsp-features">
+                  DSP Features                  </a></li>
+                              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <b class="pxbottom"><b class="pxb4"></b><b class="pxb3"></b><b class="pxb2"></b><b class="pxb1"></b></b> </div>
+    <!--Recent post box end -->
+    
+    <!--Twitter  Start -->
+    <div id="txsnazzy"> <b class="txtop"><b class="txb1"></b><b class="txb2"></b><b class="txb3"></b><b class="txb4"></b></b>
+      <div class="txboxcontent">
+        <div class="popular">
+          <ul>
+            <li>
+              <h2 class="i_twitter">Twitter</h2>
+                <div class="aktt_tweets">
+	<ul>
+		<li>Digital Media With DSP?
+DSP are being used by advertisers  to manage media and automate bids in real time using only one interface. <a href="http://twitter.com/OPENDSP/statuses/17234982426648576" class="aktt_tweet_time">2010-12-21</a></li>
+		<li>What is a demandsideplatform?
+Demand Side Platform,the system that connects to multiple ad exchanges accessed by a single user interface <a href="http://twitter.com/OPENDSP/statuses/17138746562449408" class="aktt_tweet_time">2010-12-21</a></li>
+		<li class="aktt_more_updates"><a href="http://twitter.com/OPENDSP">More updates...</a></li>
+</ul>	<p id="aktt_tweet_posted_msg">Posting tweet...</p><p class="aktt_credit">Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a></p></div>            </li>
+          </ul>
+        </div>
+      </div>
+      <b class="txbottom"><b class="txb4"></b><b class="txb3"></b><b class="txb2"></b><b class="txb1"></b></b> </div>
+    <!--Twitter post box end -->
+    
+    <div id="l_sidebar" class="clearfix">
+  	<ul> 	  <li>
+      <h2 class="sidebartitle">
+        Recent Comments      </h2>
+            
+<ul>
+	<li><strong><a href="http://www.opendsp.com/opendsp/2010/12/benefits-for-advertisers-with-dsp#comment-6" title="on Benefits For  Advertisers With DSP">admin</a></strong>: HI this is new methodology for maintaining adservers...</li>
+	<li><strong><a href="http://www.opendsp.com/opendsp/2010/12/what-is-demand-side-platforms-means-2#comment-4" title="on What is a demand-side platform?">admin</a></strong>: Thanks for good Answer for DSP...</li>
+	<li><strong><a href="http://www.opendsp.com/openrtb/2010/12/openrtb-announcement#comment-3" title="on OpenRTB Announcement">admin</a></strong>: Ya Good Idea...</li>
+</ul>    </li>
+ 		</ul>
+</div>    <div id="r_sidebar" class="clearfix">
+	<ul>
+		<li>
+        <h2>Links</h2>
+	    <ul>
+        <li><a href="http://www.adneedle.com" rel="contact met" title="Run search, social, mobile &amp; display ads all in one place." target="_blank">adneedle</a> - Run search, social, mobile &amp; display ads all in one place.</li>
+<li><a href="http://www.openxservices.com" target="_blank">OpenXServices</a></li>
+        </ul>
+    </li>
+ 		</ul>
+</div>    
+  </div>
+</div>
+<!--sidebar.php end-->
+<!--include footer-->
+</div>
+
+<div class="container-bottom"></div> 
+
+<div id="footer">
+  <div id="footer-wrap">
+    <ul id="nav-footer">
+      <li class="page_item page-item-2"><a href="http://www.opendsp.com/home.html" title="Home">Home</a></li>
+<li class="page_item page-item-7"><a href="http://www.opendsp.com/demandsideplatform.html" title="Demand Side Platform">Demand Side Platform</a></li>
+<li class="page_item page-item-9"><a href="http://www.opendsp.com/realtimebidding.html" title="Real Time Bidding">Real Time Bidding</a></li>
+<li class="page_item page-item-61"><a href="http://www.opendsp.com/sell-side-platform.html" title="Sell Side Platform">Sell Side Platform</a></li>
+<li class="page_item page-item-11"><a href="http://www.opendsp.com/blo.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-103"><a href="http://www.opendsp.com/contact-2.html" title="Contact">Contact</a></li>
+    </ul>
+    
+    <div id="follow" class="right"><ul class="tab down"><li class="follow"><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png"  alt="follow:"/><span>follow:</span></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://www.facebook.com/" title="Become my Facebook friend" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-275px 0px"  alt="Become my Facebook friend"/> <span class="head">Become my Facebook friend</span></a></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://www.opendsp.com/feed/rss" title="RSS" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-1100px 0px"  alt="RSS"/> <span class="head">RSS</span></a></li><li class="iconOnly"><a rel="nofollow me" target="_blank" href="http://twitter.com/OPENDSP" title="twitter" ><img src="http://www.opendsp.com/wp-content/plugins/share-and-follow/images/blank.png" height="24"  width="24" style="background: transparent url(http://www.opendsp.com/wp-content/plugins/share-and-follow/default/24/sprite-24.png) no-repeat;padding:0;margin:0;height:24px;width:24px;background-position:-1325px 0px"  alt="twitter"/> <span class="head">twitter</span></a></li></ul></div><script type='text/javascript'>var _cmo = {background_color: "#68212B",label: "Contact",text: "Contact",lang: "en",align: "left",valign: "middle",form: "4d109f8c5243be437c001b04"}; (function() {var cms = document.createElement('script'); cms.type = 'text/javascript'; cms.async = true; cms.src = 'http://static.contactme.com/widgets/tab/v1/tab.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cms, s);})();</script>    
+  </div>
+  </div> <!-- footer #end -->
+
+</body>
+</html>
+<!-- analytics977 --> 

@@ -1,0 +1,60 @@
+function m__(context)
+{
+	var m = arguments.callee; // m - "module"
+
+	if (!isset(m, 'loaded'))
+	{
+		m.loaded = {};
+		/* $("body").bind('pre-fastload', function(){ gcLive(); }); */
+	}
+
+	var modules = [];
+	var vargc = 'var[rel="m"]';
+
+	context.find(vargc).add(context.filter(vargc)).each(function(index, el){
+		var mdls = $(el).html();
+		if(mdls)
+		{
+			mdls = mdls.split(' ');
+			$.each(mdls, function(key, value){
+				if(value)
+					modules.push(value);
+			})
+		}
+	});
+
+	$.each(modules, function(key, module){
+		var firstRun = !isset(m.loaded, module);
+
+		if(firstRun)
+			m.loaded[module] = 1;
+		else
+			++m.loaded[module];
+
+		var module_func = window['m__'+module];
+		if (!module_func)
+		{
+			$.getScript(include_js_path + module + '.js', function(){
+				(window['m__'+module] || nop)(context, firstRun);
+			});
+		}
+		else
+			(module_func || nop)(context, firstRun);
+	});
+
+	log('Modules loaded: ' + modules.join(', '));
+}
+
+function setup (context)
+{
+	$.ajaxSetup({
+		dataType: 'json'
+	});
+}
+
+$(function(){
+	var doc = $(document);
+
+	setup(doc);
+	m__(doc);
+});

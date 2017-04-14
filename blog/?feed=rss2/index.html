@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>OpenDSP Blog</title>
+	<atom:link href="http://opendsp.com/blog/?feed=rss2" rel="self" type="application/rss+xml" />
+	<link>http://opendsp.com/blog</link>
+	<description>OpenDSP Blog</description>
+	<lastBuildDate>Wed, 31 Dec 2014 01:07:46 +0000</lastBuildDate>
+	<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=4.0.1</generator>
+	<item>
+		<title>Custom bidder vs. seat on DSP: dilemma and its resolution</title>
+		<link>http://opendsp.com/blog/?p=9</link>
+		<comments>http://opendsp.com/blog/?p=9#comments</comments>
+		<pubDate>Fri, 26 Dec 2014 07:12:36 +0000</pubDate>
+		<dc:creator><![CDATA[admin]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://opendsp.com/blog/?p=9</guid>
+		<description><![CDATA[Which is the key factor to decide between building a custom RTB bidder/DSP or becoming a seat-holder of any of the existing ones? Salvador Merchán     Biz Dev &#38; Partnerships &#8211; Marketing &#8211; Ebusiness I guess it is the recurrent dilemma between doing in-house or outsource. DPSs are making easier the access to dozens of [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><strong>Which is the key factor to decide between building a custom RTB bidder/DSP or becoming a seat-holder of any of the existing ones?</strong></p>
+<p><strong><a href="https://www.linkedin.com/profile/view?id=70188864&amp;goback=%2Egde_3716447_member_5953192584875638785">Salvador Merchán</a>     Biz Dev &amp; Partnerships &#8211; Marketing &#8211; Ebusiness</strong></p>
+<p><em>I guess it is the recurrent dilemma between doing in-house or outsource. DPSs are making easier the access to dozens of Supply sources out-of-the-box, but in which scenarios, building a tailored RTB DSP can be an advantage? Is there any DSP framework or platform built on OpenRTB could accelerate the development?</em></p>
+<p>&nbsp;</p>
+<p>Above, I quoted a recent post on the Open RTB LinkedIn group. Here is a detailed answer to this important question.</p>
+<p>&nbsp;</p>
+<p>The dilemma exists because any traditional DSP is a black box which makes bidding decisions on your behalf: you set up the rules and criteria offline via the UI/API, but otherwise you are not aware of the DSP’s bidding logic. Besides, you do not have access to the data itself; you can only &#8220;ask&#8221; DSP to use the data (be it 3rd-party data or bid request data) in a certain, pre-defined way. There are very important business cases when this is not sufficient. For example, to discover prospective converters you may need to run look-alike modeling, and you need access to wide arrays of data for this modeling to work. In general, such business cases related to audience targeting are limited. However, the ability to make bidding decisions becomes critically important when you try to optimize not only the audience but also the entire effect of the advertising campaign.</p>
+<p>In any case, given industry&#8217;s technological development in recent years, the answer to the question posed here primarily requires a business decision, and to make it you need to answer several critical questions:</p>
+<ol>
+<li>What in the existing DSP solutions doesn&#8217;t work for you?
+<ul>
+<li>Cost? &#8211; DSPs charge media markup of 10% &#8211; 15%.</li>
+<li>Decision making? You have some solution that cannot be implemented using DSP&#8217;s UI and needs a capability to make decisions in real time based on the multiple attributes of each impression.</li>
+<li>Insecurity of data? You are not confident your own data will not be shared with other DSP clients.</li>
+<li>Access to data for modeling? While DSP&#8217;s UI is fine to run the campaigns, you need your own data capabilities. Integrating your data system with a DSP might not be the easiest thing to do. And to use 3-rd party data for modeling rather than just targeting, you will still need to integrate with the corresponding data provider directly.</li>
+<li>IP ownership? It is important for the investors that your company own the entire IP. To me, this premise is debatable: what is the IP in this situation?</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li>Do the benefits of having/building your own custom bidder outweigh the costs?
+<ul>
+<li>There are significant costs of building the system: bidder itself, UI, ad server, data warehouse and everything on top of it. Maintaining your system will cost a lot of money as well, so you will need to be able to predict the architecture and the scale at which your maintenance costs will beat DSP&#8217;s media markup fee.</li>
+<li>Scale: DSPs have access to multiple exchanges. Integrating with all exchanges is a lengthy and costly procedure. Besides, DSPs process huge real-time bidding traffic (~1 mln QPS at peak). You will need to spend a lot of time integrating with the exchanges and a lot of money to be able to process similar traffic, without clear benefits.</li>
+<li>DSPs have integration with multiple data service providers for targeting and filtering: audience data providers, page-level data providers, monitoring and verification services, etc. Some of these data services, e.g. demo, brand safety, viewability targeting, fraud prevention, etc., are a must for many clients. Are you sure you want to integrate with at least some of the data providers yourself?</li>
+<li>The main purpose of having your own bidder is to be able to utilize great variety of data and build more granular bidding models. If you decide to build your own bidder, you will either have to develop your own data solutions: warehousing, processing, analytics, modeling, etc., plus acquire some data science capabilities, entirely replacing external DMP, or integrate external DMP into your bidder and conduct modeling on the combined data. Both are pretty formidable tasks.</li>
+</ul>
+</li>
+</ol>
+<p>After answering all those questions, one can further elaborate whether to get a seat on a DSP or to build your own bidding system, and what technology to use.</p>
+<p>We at OpenDSP have actually created a platform that makes the posed question moot. It is a comprehensive SaaS platform which is completely open: every client, by licensing OpenDSP, effectively owns the entire adtech stack, including a bidder, a data warehouse + data processing and modeling tools, an ad server, a UI, optimization software, and custom analytics and reporting. You do not need to build or maintain the system, just bring your data, securely integrate it into the data warehouse, and build your own bidding models based on the data and business models (we can help you with this as well). You will be able to bid on every bid request based on the combination of attributes in the bid request as an input into your bid price model. And, critically, for the first time in the industry, the platform allows measurement and optimization of the incremental effect of the ad campaign.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://opendsp.com/blog/?feed=rss2&#038;p=9</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
